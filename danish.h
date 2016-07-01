@@ -1,5 +1,7 @@
 ! ==============================================================================
-!   ENGLISH:  Language Definition File
+!   DANISH:  Language Definition File
+!
+!   Derived from English.h dated 20160608 by Thomas Bøvith (2016)
 !
 !   Supplied for use with Inform 6 -- Release 6.12.1 -- Serial number 160605
 !
