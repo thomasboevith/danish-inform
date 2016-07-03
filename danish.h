@@ -46,22 +46,22 @@ Class   CompassDirection
 Object Compass "compass" has concealed;
 
 #Ifndef WITHOUT_DIRECTIONS;
-CompassDirection -> n_obj  with short_name "north",     door_dir n_to,
-                                name 'n//' 'north';
-CompassDirection -> s_obj  with short_name "south",     door_dir s_to,
-                                name 's//' 'south';
-CompassDirection -> e_obj  with short_name "east",      door_dir e_to,
-                                name 'e//' 'east';
-CompassDirection -> w_obj  with short_name "west",      door_dir w_to,
-                                name 'w//' 'west';
-CompassDirection -> ne_obj with short_name "northeast", door_dir ne_to,
-                                name 'ne'  'northeast';
-CompassDirection -> nw_obj with short_name "northwest", door_dir nw_to,
-                                name 'nw'  'northwest';
-CompassDirection -> se_obj with short_name "southeast", door_dir se_to,
-                                name 'se'  'southeast';
-CompassDirection -> sw_obj with short_name "southwest", door_dir sw_to,
-                                name 'sw'  'southwest';
+CompassDirection -> n_obj  with short_name "nord",     door_dir n_to,
+                                name 'n//' 'nord';
+CompassDirection -> s_obj  with short_name "syd",     door_dir s_to,
+                                name 's//' 'syd';
+CompassDirection -> e_obj  with short_name "øst",      door_dir e_to,
+                                name 'e//' 'øst';
+CompassDirection -> w_obj  with short_name "vest",      door_dir w_to,
+                                name 'w//' 'vest';
+CompassDirection -> ne_obj with short_name "nordøst", door_dir ne_to,
+                                name 'ne'  'nordøst';
+CompassDirection -> nw_obj with short_name "nordvest", door_dir nw_to,
+                                name 'nw'  'nordvest';
+CompassDirection -> se_obj with short_name "sydøst", door_dir se_to,
+                                name 'se'  'sydøst';
+CompassDirection -> sw_obj with short_name "sydvest", door_dir sw_to,
+                                name 'sw'  'sydvest';
 CompassDirection -> u_obj  with short_name "up above",  door_dir u_to,
                                 name 'u//' 'up' 'ceiling' 'above' 'sky';
 CompassDirection -> d_obj  with short_name "ground",    door_dir d_to,
@@ -209,14 +209,14 @@ Array LanguageGNAsToArticles --> 0 0 0 1 1 1 0 0 0 1 1 1;
 
 [ LanguageDirection d;
     switch (d) {
-      n_to:    print "north";
-      s_to:    print "south";
-      e_to:    print "east";
-      w_to:    print "west";
-      ne_to:   print "northeast";
-      nw_to:   print "northwest";
-      se_to:   print "southeast";
-      sw_to:   print "southwest";
+      n_to:    print "nord";
+      s_to:    print "syd";
+      e_to:    print "øst";
+      w_to:    print "vest";
+      ne_to:   print "nordøst";
+      nw_to:   print "nordvest";
+      se_to:   print "sydøst";
+      sw_to:   print "sydvest";
       u_to:    print "up";
       d_to:    print "down";
       in_to:   print "in";
