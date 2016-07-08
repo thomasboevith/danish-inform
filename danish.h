@@ -49,28 +49,28 @@ Object Compass "compass" has concealed;
 #Ifndef WITHOUT_DIRECTIONS;
 CompassDirection -> n_obj  with short_name "nord",     door_dir n_to,
                                 name 'n//' 'nord';
-CompassDirection -> s_obj  with short_name "syd",     door_dir s_to,
+CompassDirection -> s_obj  with short_name "syd",      door_dir s_to,
                                 name 's//' 'syd';
 CompassDirection -> e_obj  with short_name "øst",      door_dir e_to,
-                                name 'e//' 'øst';
-CompassDirection -> w_obj  with short_name "vest",      door_dir w_to,
-                                name 'w//' 'vest';
-CompassDirection -> ne_obj with short_name "nordøst", door_dir ne_to,
-                                name 'ne'  'nordøst';
+                                name 'e//' 'ø//' 'øst';
+CompassDirection -> w_obj  with short_name "vest",     door_dir w_to,
+                                name 'w//' 'v//' 'vest';
+CompassDirection -> ne_obj with short_name "nordøst",  door_dir ne_to,
+                                name 'ne' 'nø' 'nordøst';
 CompassDirection -> nw_obj with short_name "nordvest", door_dir nw_to,
-                                name 'nw'  'nordvest';
-CompassDirection -> se_obj with short_name "sydøst", door_dir se_to,
-                                name 'se'  'sydøst';
-CompassDirection -> sw_obj with short_name "sydvest", door_dir sw_to,
-                                name 'sw'  'sydvest';
-CompassDirection -> u_obj  with short_name "up above",  door_dir u_to,
-                                name 'u//' 'up' 'ceiling' 'above' 'sky';
-CompassDirection -> d_obj  with short_name "ground",    door_dir d_to,
-                                name 'd//' 'down' 'floor' 'below' 'ground';
+                                name 'nw' 'nv' 'nordvest';
+CompassDirection -> se_obj with short_name "sydøst",   door_dir se_to,
+                                name 'se' 'sø' 'sydøst';
+CompassDirection -> sw_obj with short_name "sydvest",  door_dir sw_to,
+                                name 'sw' 'sv' 'sydvest';
+CompassDirection -> u_obj  with short_name "op",       door_dir u_to,
+                                name 'u//' 'op';
+CompassDirection -> d_obj  with short_name "ned",      door_dir d_to,
+                                name 'd//' 'ned';
 #endif; ! WITHOUT_DIRECTIONS
 
-CompassDirection -> in_obj  with short_name "inside",  door_dir in_to;
-CompassDirection -> out_obj with short_name "outside", door_dir out_to;
+CompassDirection -> in_obj  with short_name "ind",     door_dir in_to;
+CompassDirection -> out_obj with short_name "ud",      door_dir out_to;
 
 ! ------------------------------------------------------------------------------
 !   Part II.   Vocabulary
