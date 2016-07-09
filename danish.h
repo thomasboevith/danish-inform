@@ -184,14 +184,11 @@ Array LanguageNumbers table
 Constant LanguageAnimateGender   = male;
 Constant LanguageInanimateGender = neuter;
 
-Constant LanguageContractionForms = 2;     ! English has two:
-                                           ! 0 = starting with a consonant
-                                           ! 1 = starting with a vowel
+Constant LanguageContractionForms = 1;     ! Danish has one.
 
-[ LanguageContraction text;
-    if (text->0 == 'a' or 'e' or 'i' or 'o' or 'u'
-                or 'A' or 'E' or 'I' or 'O' or 'U') return 1;
-    return 0;
+[ LanguageContraction text x;
+  x = text; ! Just to avoid compiler warning
+  return 0;
 ];
 
 Array LanguageArticles -->
