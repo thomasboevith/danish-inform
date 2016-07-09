@@ -224,48 +224,48 @@ Array LanguageGNAsToArticles --> 0 0 0 1 1 1 0 0 0 1 1 1;
 ];
 
 [ LanguageNumber n f;
-    if (n == 0)    { print "zero"; rfalse; }
+    if (n == 0)    { print "nul"; rfalse; }
     if (n < 0)     { print "minus "; n = -n; }
-    if (n >= 1000) { print (LanguageNumber) n/1000, " thousand"; n = n%1000; f = 1; }
+    if (n >= 1000) { print (LanguageNumber) n/1000, " tusind"; n = n%1000; f = 1; }
     if (n >= 100)  {
         if (f == 1) print ", ";
-        print (LanguageNumber) n/100, " hundred"; n = n%100; f = 1;
+        print (LanguageNumber) n/100, " hundrede"; n = n%100; f = 1;
     }
     if (n == 0) rfalse;
     #Ifdef DIALECT_US;
     if (f == 1) print " ";
     #Ifnot;
-    if (f == 1) print " and ";
+    if (f == 1) print " og ";
     #Endif;
     switch (n) {
-      1:    print "one";
-      2:    print "two";
-      3:    print "three";
-      4:    print "four";
-      5:    print "five";
-      6:    print "six";
-      7:    print "seven";
-      8:    print "eight";
-      9:    print "nine";
-      10:   print "ten";
-      11:   print "eleven";
-      12:   print "twelve";
-      13:   print "thirteen";
-      14:   print "fourteen";
-      15:   print "fifteen";
-      16:   print "sixteen";
-      17:   print "seventeen";
-      18:   print "eighteen";
-      19:   print "nineteen";
+      1:    print "en";
+      2:    print "to";
+      3:    print "tre";
+      4:    print "fire";
+      5:    print "fem";
+      6:    print "seks";
+      7:    print "syv";
+      8:    print "otte";
+      9:    print "ni";
+      10:   print "ti";
+      11:   print "elleve";
+      12:   print "tolv";
+      13:   print "tretten";
+      14:   print "fjorten";
+      15:   print "femten";
+      16:   print "seksten";
+      17:   print "sytten";
+      18:   print "atten";
+      19:   print "nitten";
       20 to 99: switch (n/10) {
-        2:  print "twenty";
-        3:  print "thirty";
-        4:  print "forty";
-        5:  print "fifty";
-        6:  print "sixty";
-        7:  print "seventy";
-        8:  print "eighty";
-        9:  print "ninety";
+        2: print "tyve";
+        3: print "tredive";
+        4: print "fyrre";
+        5: print "halvtres";
+        6: print "treds";
+        7: print "halvfjerds";
+        8: print "firs";
+        9: print "halvfems";
         }
         if (n%10 ~= 0) print "-", (LanguageNumber) n%10;
     }
