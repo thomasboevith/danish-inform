@@ -1247,8 +1247,8 @@ Constant COLON__TX      = ": ";
         8:  CSubjectVerb(actor,false,false,"put",0,"puts","put"); " ", (the) x1, " on ", (the) x2, ".";
     }
   Quit: switch (n) {
-        1:  print "Please answer yes or no.";
-        2:  print "Are you sure you want to quit? ";
+        1:  print "Svar ja eller nej.";
+        2:  print "Er du sikker på, at du vil afslutte? ";
     }
   Remove: switch (n) {
         1:  CSubjectIs  (x1,true); " unfortunately closed.";
