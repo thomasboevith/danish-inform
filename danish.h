@@ -215,10 +215,10 @@ Array LanguageGNAsToArticles --> 0 0 0 1 1 1 0 0 0 1 1 1;
       nw_to:   print "nordvest";
       se_to:   print "sydøst";
       sw_to:   print "sydvest";
-      u_to:    print "up";
-      d_to:    print "down";
-      in_to:   print "in";
-      out_to:  print "out";
+      u_to:    print "op";
+      d_to:    print "ned";
+      in_to:   print "ind";
+      out_to:  print "ud";
       default: return RunTimeError(9,d);
     }
 ];
