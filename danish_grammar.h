@@ -1,5 +1,8 @@
+! -*- coding: utf-8 -*-
 ! ==============================================================================
-!   GRAMMAR:  Grammar table entries for the standard verbs library.
+!   DANISH_GRAMMAR:  Grammar table entries for the standard verbs library.
+!
+!   Derived from Grammar.h dated 20160608 by Thomas Bøvith (2016)
 !
 !   Supplied for use with Inform 6 -- Release 6.12.1 -- Serial number 160605
 !
@@ -12,7 +15,7 @@
 !   In your game file, Include three library files in this order:
 !       Include "Parser";
 !       Include "VerbLib";
-!       Include "Grammar";
+!       Include "danish_grammar";
 ! ==============================================================================
 
 System_file;
@@ -45,7 +48,7 @@ Verb meta 'notify'
 Verb meta 'pronouns' 'nouns'
     *                                           -> Pronouns;
 
-Verb meta 'quit' 'q//' 'die'
+Verb meta 'quit' 'q//' 'afslut'
     *                                           -> Quit;
 
 Verb meta 'recording'
