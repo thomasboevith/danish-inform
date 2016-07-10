@@ -223,51 +223,66 @@ Array LanguageGNAsToArticles --> 0 0 0 1 1 1 0 0 0 1 1 1;
     }
 ];
 
-[ LanguageNumber n f;
-    if (n == 0)    { print "nul"; rfalse; }
-    if (n < 0)     { print "minus "; n = -n; }
-    if (n >= 1000) { print (LanguageNumber) n/1000, " tusind"; n = n%1000; f = 1; }
-    if (n >= 100)  {
+[ LanguageNumber n force_neuter   f r;
+! From number to text string representatation (n = [-32767;32767])
+    f = 0;
+    if (n == 0) { print "nul"; rfalse; }
+    if (n < 0) { print "minus "; n = -n; }
+    if (n >= 1000) {
         if (f == 1) print ", ";
-        print (LanguageNumber) n/100, " hundrede"; n = n%100; f = 1;
+        LanguageNumber(n/1000, true, 0, 0);
+        print " tusinde";
+        n = n%1000;
+        f = 1;
+    }
+    if (n >= 100) {
+        if (f == 1) print ", ";
+        LanguageNumber(n/100, true, 0, 0);
+        print " hundrede";
+        n = n%100;
+        f = 1;
     }
     if (n == 0) rfalse;
-    #Ifdef DIALECT_US;
-    if (f == 1) print " ";
-    #Ifnot;
-    if (f == 1) print " og ";
-    #Endif;
-    switch (n) {
-      1:    print "en";
-      2:    print "to";
-      3:    print "tre";
-      4:    print "fire";
-      5:    print "fem";
-      6:    print "seks";
-      7:    print "syv";
-      8:    print "otte";
-      9:    print "ni";
-      10:   print "ti";
-      11:   print "elleve";
-      12:   print "tolv";
-      13:   print "tretten";
-      14:   print "fjorten";
-      15:   print "femten";
-      16:   print "seksten";
-      17:   print "sytten";
-      18:   print "atten";
-      19:   print "nitten";
-      20 to 99: switch (n/10) {
-        2: print "tyve";
-        3: print "tredive";
-        4: print "fyrre";
-        5: print "halvtres";
-        6: print "treds";
-        7: print "halvfjerds";
-        8: print "firs";
-        9: print "halvfems";
+    if (n < 100) {
+        r = n%10;
+        if (f == 1) print " og ";
+        if (n > 19 && r ~= 0) {
+            (LanguageNumber) (r);
+            print " og ";
+            n = n - r;
         }
-        if (n%10 ~= 0) print "-", (LanguageNumber) n%10;
+    }
+    switch (n) {
+     1:    if (force_neuter) print "et"; else print "en";
+     2:    print "to";
+     3:    print "tre";
+     4:    print "fire";
+     5:    print "fem";
+     6:    print "seks";
+     7:    print "syv";
+     8:    print "otte";
+     9:    print "ni";
+     10:   print "ti";
+     11:   print "elleve";
+     12:   print "tolv";
+     13:   print "tretten";
+     14:   print "fjorten";
+     15:   print "femten";
+     16:   print "seksten";
+     17:   print "sytten";
+     18:   print "atten";
+     19:   print "nitten";
+     20 to 99:
+        switch(n/10) {
+         2: print "tyve";
+         3: print "tredive";
+         4: print "fyrre";
+         5: print "halvtres";
+         6: print "treds";
+         7: print "halvfjerds";
+         8: print "firs";
+         9: print "halvfems";
+        }
     }
 ];
 
