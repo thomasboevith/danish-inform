@@ -812,14 +812,14 @@ Constant COLON__TX      = ": ";
         5: "[Command replay complete.]";
         #Endif; ! TARGET_
     }
-  Consult:  CSubjectVerb(actor,true,false,"discover",0,"discovers","discovered");
-            print " nothing of interest in ";
+  Consult:  CSubjectVerb(actor,true,false,"finder",0,"finder","fandt");
+            print " ingenting af interesse i ";
             if (x1 == player) { OnesSelf(x1); ".";}
             else print_ret (the) x1, ".";
   Cut: switch (n) {
-        1:  print "Cutting ", (ThatOrThose) x1, " up would ";
-            Tense("achieve", "have achieved");
-            " little.";
+        1:  print "At skære i ", (ThatOrThose) x1;
+            Tense("virker", "virkede");
+            " meningsløst.";
         2:  DecideAgainst();
     }
   Dig:      print "Digging would ";
