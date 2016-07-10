@@ -847,12 +847,12 @@ Constant COLON__TX      = ": ";
                 if (actor == player) ". Ikke værst."; else ".";
     }
   EmptyT: switch (n) {
-        1:  CSubjectCant(x1,true); " contain things.";
-        2:  CSubjectIs(x1,true); " closed.";
-        3:  CSubjectIs(x1,true); " empty already.";
-        4:  print "That wouldn't ";
-            Tense("empty", "have emptied");
-            " anything.";
+        1:  CSubjectCant(x1,true); " indeholde noget.";
+        2:  CSubjectIs(x1,true); " lukket.";
+        3:  CSubjectIs(x1,true); " allerede tom.";
+        4:  print "Det ville ikke ";
+            Tense("tom", "har tømt");
+            " noget.";
     }
   Enter: switch (n) {
         1:  print "But "; CSubjectIs(actor,true,true);
