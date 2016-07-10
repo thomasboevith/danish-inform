@@ -286,12 +286,10 @@ Array LanguageGNAsToArticles --> 0 0 0 1 1 1 0 0 0 1 1 1;
     }
 ];
 
-[ LanguageTimeOfDay hours mins i;
-    i = hours%12;
-    if (i == 0) i = 12;
-    if (i < 10) print " ";
-    print i, ":", mins/10, mins%10;
-    if ((hours/12) > 0) print " pm"; else print " am";
+[ LanguageTimeOfDay hours mins;
+    hours = hours % 24;
+    mins = mins % 60;
+    print hours/10, hours%10, ":", mins/10, mins%10;
 ];
 
 [ LanguageVerb i;
