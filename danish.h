@@ -417,35 +417,35 @@ Constant COLON__TX      = ": ";
 [ ItOrThem obj;
     if (obj == player) {
 	if (player provides narrative_voice) {
-	    if (player.narrative_voice == 1) { print "myself"; return; }
+	    if (player.narrative_voice == 1) { print "mig selv"; return; }
 	    if (player.narrative_voice == 3) { CDefart(player); return; }
 	}
-	print "yourself";
+	print "dig selv";
 	return;
     }
-    if (obj has pluralname)       { print "them"; return; }
-    if (obj has female)           { print "her"; return; }
+    if (obj has pluralname)       { print "dem"; return; }
+    if (obj has female)           { print "hende"; return; }
     if (obj has male or animate)
-        if (obj hasnt neuter)     { print "him"; return; }
-    print "it";
+        if (obj hasnt neuter)     { print "ham"; return; }
+    print "den";
 ];
 
 ! Nominative
 [ CThatOrThose obj;
     if (obj == player) {
 	if (player provides narrative_voice) {
-	    if (player.narrative_voice == 1) { print "I"; return; }
+	    if (player.narrative_voice == 1) { print "Jeg"; return; }
 	    if (player.narrative_voice == 3) { CDefart(player); return; }
 	}
-	print "You";
+	print "Dig";
 	return;
     }
-    if (obj has pluralname)		{ print "Those"; return; }
-    if (obj has female)			{ print "She"; return; }
+    if (obj has pluralname)		{ print "Dem"; return; }
+    if (obj has female)			{ print "Hende"; return; }
     if (obj has male or animate) {
-        if (obj hasnt neuter)		{ print "He"; return; }
+        if (obj hasnt neuter)		{ print "Ham"; return; }
     }
-    print "That";
+    print "Den";
 ];
 
 ! Nominative
