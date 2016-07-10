@@ -754,13 +754,13 @@ Constant COLON__TX      = ": ";
 
 [ LanguageLM n x1 x2;
   Answer,Ask:
-            print "There ";
-            Tense("is", "was");
-            " no reply.";
+            print "Der ";
+            Tense("er", "var");
+            " intet svar.";
 ! Ask:      see Answer
-  Attack:   print "Violence ";
-            Tense("isn't", "wasn't");
-            " the answer to this one.";
+  Attack:   print "Vold ";
+            Tense("er", "var");
+            " ikke løsningen her.";
   Blow:     CSubjectCant(actor,true);
             " usefully blow ", (thatorthose) x1, ".";
   Burn: switch (n) {
