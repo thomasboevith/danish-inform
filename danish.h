@@ -532,14 +532,14 @@ Constant COLON__TX      = ": ";
     }
     if (obj == player) {
         if (player provides narrative_voice) switch (player.narrative_voice) {
-          1:  print "I ", (string) v1; return;
+          1:  print "Jeg ", (string) v1; return;
           2:  ! Do nothing.
           3:  CDefart(player);
               print " ", (string) v3; return;
           default: RunTimeError(16, player.narrative_voice);
         }
-        if (nocaps) { print "you ", (string) v2; return; }
-	print "You ", (string) v2; return;
+        if (nocaps) { print "du ", (string) v2; return; }
+	print "Du ", (string) v2; return;
     }
     SubjectNotPlayer(obj, reportage, v2, v3);
 ];
