@@ -326,7 +326,7 @@ Array LanguageGNAsToArticles --> 0 0 0 1 1 1 0 0 0 1 1 1;
 ! ----------------------------------------------------------------------------
 
 [ LanguageVerbLikesAdverb w;
-    if (w == 'look' or 'go' or 'push' or 'walk')
+    if (w == 'se' or 'gå' or 'skub')
         rtrue;
     rfalse;
 ];
