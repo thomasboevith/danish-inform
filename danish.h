@@ -468,10 +468,10 @@ Constant COLON__TX      = ": ";
 
 [ IsOrAre obj;
     if (player provides narrative_tense && player.narrative_tense == PAST_TENSE) {
-        if (obj has pluralname || obj == player) print "were"; else print "was";
+        if (obj has pluralname || obj == player) print "var"; else print "var";
         return;
     }
-    if (obj has pluralname || obj == player) print "are"; else print "is";
+    if (obj has pluralname || obj == player) print "er"; else print "er";
     return;
 ];
 
