@@ -762,31 +762,32 @@ Constant COLON__TX      = ": ";
             Tense("er", "var");
             " ikke løsningen her.";
   Blow:     CSubjectCant(actor,true);
-            " usefully blow ", (thatorthose) x1, ".";
+            " forvente, at det giver mening at blæse på ", (thatorthose) x1, ".";
   Burn: switch (n) {
-        1:  print "This dangerous act would ";
-            Tense("achieve", "have achieved");
-            " little.";
+        1:  print "Den farefulde handling vil";
+            Tense(" ikke medføre", "le ikke medføre");
+            " noget godt.";
         2:  DecideAgainst();
     }
-  Buy:      print "Nothing ";
-            Tense("is", "was");
-            " on sale.";
+  Buy:      print "Desværre ";
+            Tense("er ", "var ");
+            print (ThatOrThose) x1;
+            " ikke til salg.";
   Climb: switch (n) {
-        1:  print "Climbing ", (ThatOrThose) x1, " would ";
-            Tense("achieve", "have achieved");
-            " little.";
+        1:  print "At klatre ", (ThatOrThose) x1, " vil";
+            Tense(" opnå", "le opnå");
+            " meget lidt.";
         2:  DecideAgainst();
     }
   Close: switch (n) {
         1:  CSubjectIs(x1,true);
-            print " not something ", (theActor) actor;
-            Tense(" can close", " could have closed");
+            print " ikke noget ", (theActor) actor;
+            Tense(" kan lukke", " kunne have lukket");
             ".";
-        2:  CSubjectIs(x1,true); " already closed.";
-        3:  CSubjectVerb(actor,false,false,"close",0,"closes","closed");
+        2:  CSubjectIs(x1,true); " allerede lukket.";
+        3:  CSubjectVerb(actor,false,false,"lukke",0,"lukker","lukket");
             " ", (the) x1, ".";
-        4:  "(first closing ", (the) x1, ")";
+        4:  "(efter at have lukket ", (the) x1, ")";
     }
   CommandsOff: switch (n) {
         1: "[Command recording off.]";
