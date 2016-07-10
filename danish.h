@@ -855,27 +855,27 @@ Constant COLON__TX      = ": ";
             " noget.";
     }
   Enter: switch (n) {
-        1:  print "But "; CSubjectIs(actor,true,true);
-            " already ", (nop) SupportObj(x1,"on ","in "), (the) x1, ".";
+        1:  print "Men "; CSubjectIs(actor,true,true);
+            " allerede ", (nop) SupportObj(x1,"på ","i "), (the) x1, ".";
         2:  CSubjectIs(x1,true);
-            print " not something ", (theActor) actor;
-            Tense(" can ", " could ");
+            print " ikke noget som ", (theActor) actor;
+            Tense(" kan ", " kunne ");
             switch (x2) {
-              'stand':  "stand on.";
-              'sit':    "sit down on.";
-              'lie':    "lie down on.";
-              default:  "enter.";
+              'stå':  "stå på.";
+              'sid':    "sidde på.";
+              'lig':    "ligge på.";
+              default:  "gå ind i.";
             }
         3:  CSubjectCant(actor,true);
-            " get into the closed ", (name) x1, ".";
+            " gå ind i den lukkede ", (name) x1, ".";
         4:  CSubjectCan(actor,true);
-            " only get into something free-standing.";
-        5:  CSubjectVerb(actor,false,false,"get",0,"gets","got");
-            SupportObj(x1," onto"," into"); " ", (the) x1, ".";
-        6:  "(getting ", (nop) SupportObj(x1,"off","out of"), " ", (the) x1, ")";
-        7:  if (x1 has supporter) "(getting onto ", (the) x1, ")";
-            if (x1 has container) "(getting into ", (the) x1, ")";
-                                  "(entering ", (the) x1, ")";
+            " kun gå ind i noget fritstående.";
+        5:  CSubjectVerb(actor,false,false,"kommer",0,"kommer","kom");
+            SupportObj(x1," op på"," ind i"); " ", (the) x1, ".";
+        6:  "(kommer ", (nop) SupportObj(x1,"af","ud af"), " ", (the) x1, ")";
+        7:  if (x1 has supporter) "(spinger op på ", (the) x1, ")";
+            if (x1 has container) "(går ind i ", (the) x1, ")";
+                                  "(går ind i ", (the) x1, ")";
     }
   Examine: switch (n) {
         1:  "Darkness, noun.  An absence of light to see by.";
