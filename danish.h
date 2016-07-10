@@ -294,11 +294,10 @@ Array LanguageGNAsToArticles --> 0 0 0 1 1 1 0 0 0 1 1 1;
 
 [ LanguageVerb i;
     switch (i) {
-      'i//','inv','inventory':
-               print "take inventory";
-      'l//':   print "look";
-      'x//':   print "examine";
-      'z//':   print "wait";
+      'i//','stat','status': print "gør status";
+      'l//','k//': print "se";
+      'x//': print "undersøg";
+      'z//': print "vent";
       default: rfalse;
     }
     rtrue;

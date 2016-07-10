@@ -297,7 +297,7 @@ Verb 'in' 'inside'
 Verb 'insert'
     * multiexcept 'in'/'into' noun              -> Insert;
 
-Verb 'inventory' 'inv' 'i//'
+Verb 'status' 'stat' 'i//'
     *                                           -> Inv
     * 'tall'                                    -> InvTall
     * 'wide'                                    -> InvWide;
