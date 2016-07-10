@@ -664,21 +664,21 @@ Constant COLON__TX      = ": ";
     if (obj == player) {
         if (obj provides narrative_voice) {
             switch (obj.narrative_voice) {
-              1:  print "I"; return;
+              1:  print "jeg"; return;
               2:  ! Do nothing.
-              3:  if (obj has neuter) { print "it"; return; }
-                  if (obj has female) { print "she"; return; }
-                  print "he"; return;
+              3:  if (obj has neuter) { print "den"; return; }
+                  if (obj has female) { print "hun"; return; }
+                  print "han"; return;
               default: RunTimeError(16, player.narrative_voice);
             }
         }
-        print "you"; return;
+        print "du"; return;
     }
-    if (obj has pluralname)       { print "they"; return; }
-    if (obj has female)           { print "she"; return; }
+    if (obj has pluralname)       { print "de"; return; }
+    if (obj has female)           { print "hun"; return; }
     if (obj has male or animate)
-        if (obj hasnt neuter)     { print "he"; return; }
-                                    print "that";
+        if (obj hasnt neuter)     { print "han"; return; }
+                                    print "den";
 ];
 
 [ SupportObj obj s1 s2;
