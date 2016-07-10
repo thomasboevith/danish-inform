@@ -347,11 +347,11 @@ Array LanguageGNAsToArticles --> 0 0 0 1 1 1 0 0 0 1 1 1;
     rfalse;
 ];
 
-Constant NKEY__TX       = "N = next subject";
-Constant PKEY__TX       = "P = previous";
-Constant QKEY1__TX      = "  Q = resume game";
-Constant QKEY2__TX      = "Q = previous menu";
-Constant RKEY__TX       = "RETURN = read subject";
+Constant NKEY__TX       = "N = næste emne";
+Constant PKEY__TX       = "P = forrige emne";
+Constant QKEY1__TX      = "  Q = tilbage til spillet";
+Constant QKEY2__TX      = "Q = forrige menu";
+Constant RKEY__TX       = "ENTER = læs emne";
 
 Constant NKEY1__KY      = 'N';
 Constant NKEY2__KY      = 'n';
