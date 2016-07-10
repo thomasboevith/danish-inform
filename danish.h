@@ -400,17 +400,17 @@ Constant COLON__TX      = ": ";
 [ ThatOrThose obj;
     if (obj == player) {
 	if (player provides narrative_voice) {
-	    if (player.narrative_voice == 1) { print "me"; return; }
+	    if (player.narrative_voice == 1) { print "mig"; return; }
 	    if (player.narrative_voice == 3) { CDefart(player); return; }
 	}
-	print "you";
+	print "du";
 	return;
     }
-    if (obj has pluralname)       { print "those"; return; }
-    if (obj has female)           { print "her"; return; }
+    if (obj has pluralname)       { print "dem"; return; }
+    if (obj has female)           { print "hende"; return; }
     if (obj has male or animate)
-        if (obj hasnt neuter)     { print "him"; return; }
-    print "that";
+        if (obj hasnt neuter)     { print "ham"; return; }
+    print "den";
 ];
 
 ! Accusative
