@@ -822,29 +822,29 @@ Constant COLON__TX      = ": ";
             " meningsløst.";
         2:  DecideAgainst();
     }
-  Dig:      print "Digging would ";
-            Tense("achieve", "have achieved");
-            " nothing here.";
+  Dig:      print "At grave ";
+            Tense("vil", "ville");
+            " være meningsløst her.";
   Disrobe: switch (n) {
-        1:  CSubjectIsnt(actor,true); " wearing ", (ThatOrThose) x1, ".";
-        2:  CSubjectVerb(actor,false,false,"take off",0,"takes off", "took off");
-            " ", (the) x1, ".";
+        1:  CSubjectIsnt(actor,true); " har ikke ", (ThatOrThose) x1, " på.";
+        2:  CSubjectVerb(actor,false,false,"tager",0,"tager", "tog");
+            " ", (the) x1, " af.";
     }
-  Drink:    print "There";
-            Tense("'s", " was");
-            " nothing suitable to drink here.";
+  Drink:    print "Der";
+            Tense(" findes", " fandtes");
+            " ingen ting værd at drikke her.";
   Drop: switch (n) {
-        1:  CSubjectIs(x1,true); " already here.";
-        2:  CSubjectVerb(actor, false, false, "haven't got", 0, "hasn't got",
-                         "didn't have");
+        1:  CSubjectIs(x1,true); " er her allerede.";
+        2:  CSubjectVerb(actor, false, false, "har ikke", 0, "har ikke",
+                         "havde ikke");
             " ", (the) x1, ".";
-        3:  "(first taking ", (the) x1, " off)";
-        4:  "Dropped.";
+        3:  "(tager først ", (the) x1, " af)";
+        4:  "Smidt.";
     }
   Eat: switch (n) {
-        1:  CSubjectIs(x1,true); " plainly inedible.";
-        2:  CSubjectVerb(actor,false,false,"eat",0,"eats", "ate"); print " ", (the) x1;
-                if (actor == player) ". Not bad."; else ".";
+        1:  CSubjectIs(x1,true); " er uspiselig.";
+        2:  CSubjectVerb(actor,false,false,"spiser",0,"spiser", "spiste"); print " ", (the) x1;
+                if (actor == player) ". Ikke værst."; else ".";
     }
   EmptyT: switch (n) {
         1:  CSubjectCant(x1,true); " contain things.";
