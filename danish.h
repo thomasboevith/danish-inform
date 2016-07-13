@@ -870,7 +870,7 @@ Constant COLON__TX      = ": ";
             " gå ind i den lukkede ", (name) x1, ".";
         4:  CSubjectCan(actor,true);
             " kun gå ind i noget fritstående.";
-        5:  CSubjectVerb(actor,false,false,"kommer",0,"kommer","kom");
+        5:  CSubjectVerb(actor,false,false,"går",0,"går","gik");
             SupportObj(x1," op på"," ind i"); " ", (the) x1, ".";
         6:  "(kommer ", (nop) SupportObj(x1,"af","ud af"), " ", (the) x1, ")";
         7:  if (x1 has supporter) "(spinger op på ", (the) x1, ")";
@@ -878,37 +878,36 @@ Constant COLON__TX      = ": ";
                                   "(går ind i ", (the) x1, ")";
     }
   Examine: switch (n) {
-        1:  "Darkness, noun.  An absence of light to see by.";
-        2:  CSubjectVerb(actor,true,false,"see",0,"sees","saw");
-            " nothing special about ", (the) x1, ".";
+        1:  "Mørke, substantiv. Fuldstændigt eller næsten fuldstændigt fravær af dagslys eller lys fra lamper, lygter m.m.";
+        2:  CSubjectVerb(actor,true,false,"ser",0,"ser","så");
+            " intet bemærkelsesværdigt ved ", (the) x1, ".";
         3:  CSubjectIs(x1,true);
-            Tense(" currently");
-            print " switched ";
-            if (x1 has on) "on."; else "off.";
+            Tense(" lige nu ");
+            if (x1 has on) "tændt."; else "slukket.";
     }
   Exit: switch (n) {
-        1:  print "But ";
+        1:  print "Men ";
             CSubjectIsnt(actor,true,true);
-            " in anything at the moment.";
+            " inde i noget som helt i øjeblikket.";
         2:  CSubjectCant(actor,false);
-            " get out of the closed ", (name) x1, ".";
-        3:  CSubjectVerb(actor,false,false,"get",0,"gets", "got");
+            " forlader den lukkede ", (name) x1, ".";
+        3:  CSubjectVerb(actor,false,false,"går",0,"går", "gik");
             print " ";
-            SupportObj(x1,"off","out of"); " ", (the) x1, ".";
+            SupportObj(x1,"ned af","ud af"); " ", (the) x1, ".";
         4:  CSubjectIsnt(actor,true);
             print " ";
-            SupportObj(x1,"on","in"); " ", (the) x1, ".";
-        5:  "(first getting ", (nop) SupportObj(x1,"off","out of"),
+            SupportObj(x1,"på","i"); " ", (the) x1, ".";
+        5:  "(går først ", (nop) SupportObj(x1,"ned af","ud af"),
               " ", (the) x1, ")";
-        6:  CSubjectVerb(actor,false,false,"stand",0,"stands","stood"); " up.";
+        6:  CSubjectVerb(actor,false,false,"står",0,"står","stod"); " op.";
     }
   Fill: switch (n) {
-        1:  print "There ";
-            Tense("isn't", "wasn't");
-            " anything obvious with which to fill ", (the) x1, ".";
-        2:  print "Filling ", (the) x1, " from ", (the) x2;
-            Tense(" doesn't", " didn't");
-            " make sense.";
+        1:  print "Der ";
+            Tense("er", "var");
+            " intet oplagt at fylde ", (the) x1, " med.";
+        2:  print "At fylde ", (the) x1, " fra ", (the) x2;
+            Tense(" giver", " gav");
+            " ingen mening.";
     }
   FullScore: switch (n) {
         1:  if (deadflag) print "The score was "; else print "The score is ";
