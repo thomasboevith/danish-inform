@@ -910,68 +910,68 @@ Constant COLON__TX      = ": ";
             " ingen mening.";
     }
   FullScore: switch (n) {
-        1:  if (deadflag) print "The score was "; else print "The score is ";
-                "made up as follows:^";
-        2:  "finding sundry items";
-        3:  "visiting various places";
-        4:  print "total (out of ", MAX_SCORE; ")";
+        1:  if (deadflag) print "Scoren var "; else print "Scoren er ";
+                "opgjort således:^";
+        2:  "finde vigtige ting";
+        3:  "besøge vigtige steder";
+        4:  print "total (ud af ", MAX_SCORE; ")";
     }
-  GetOff:   print "But ";
-            CSubjectIsnt(actor,true,true); " on ", (the) x1, " at the moment.";
+  GetOff:   print "Men ";
+            CSubjectIsnt(actor,true,true); " på ", (the) x1, " i øjeblikket.";
   Give: switch (n) {
-        1:  CSubjectIsnt(actor,true); " holding ", (the) x1, ".";
-        2:  CSubjectVerb(actor,false,false,"juggle",0,"juggles","juggled");
-            print " ", (the) x1, " for a while, but ";
-            CSubjectVoice(actor,"don't","don't","doesn't","didn't");
-            " achieve much.";
-        3:  CSubjectDont(x1,true); " seem interested.";
-        4:  CSubjectVerb(actor,false,false,"hand over",0,"hands over","handed over");
-            " ", (the) x1, ".";
+        1:  CSubjectIsnt(actor,true); " bærer ikke ", (the) x1, ".";
+        2:  CSubjectVerb(actor,false,false,"fumler",0,"fumler","fumlede");
+            print " ", (the) x1, " i et stykke tid, men ";
+            CSubjectVoice(actor,"opnår","opnår","opnår","opnåede");
+            " ikke meget derved.";
+        3:  CSubjectDont(x1,true); " lader ikke til at være interesseret.";
+        4:  CSubjectVerb(actor,false,false,"giver",0,"giver","gav");
+            " til ", (the) x1, ".";
     }
   Go: switch (n) {
         1:  CSubjectWill(actor,true);
-            Tense(" have", " had");
-                " to get ", (nop) SupportObj(x1,"off","out of"), " ", (the) x1, " first.";
-        2:  CSubjectCant(actor,true); " go that way.";
-        3:  CSubjectIs  (actor,true); " unable to climb ", (the) x1, ".";
-        4:  CSubjectIs  (actor,true); " unable to descend by ", (the) x1, ".";
-        5:  CSubjectCant(actor,true); " since ", (the) x1, " ", (IsOrAre) x1, " in the way.";
-        6:  CSubjectCant(actor,true); " since ", (the) x1, " ", (nop) PluralObj(x1,"lead","leads","led"), " nowhere.";
-        7:  CSubjectVerb(actor,false,false,"depart",0,"departs","departed"); ".";
+            Tense(" må", " måtte");
+                " klatre ", (nop) SupportObj(x1,"ned","ned af"), " ", (the) x1, " først.";
+        2:  CSubjectCant(actor,true); " gå den vej.";
+        3:  CSubjectIs  (actor,true); " kan ikke klatre op på ", (the) x1, ".";
+        4:  CSubjectIs  (actor,true); " kan ikke klatre ned af ", (the) x1, ".";
+        5:  CSubjectCant(actor,true); " fordi ", (the) x1, " ", (IsOrAre) x1, " er i vejen.";
+        6:  CSubjectCant(actor,true); " fordi ", (the) x1, " ikke ", (nop) PluralObj(x1,"fører","fører","førte"), " nogen steder hen.";
+        7:  CSubjectVerb(actor,false,false,"afgår",0,"afgår","afgik"); ".";
     }
   Insert: switch (n) {
-        1:  CSubjectVerb(actor,true,false,"need",0,"needs","needed");
-            print " to be holding ", (the) x1, " before ", (theActor) actor;
-            Tense(" can", " could");
-            " put ", (ItOrThem) x1, " into something else.";
-        2:  CSubjectCant(x1,true); " contain things.";
-        3:  CSubjectIs  (x1,true); " closed.";
+        1:  CSubjectVerb(actor,true,false,"må",0,"må","måtte");
+            print " have ", (the) x1, " før ", (theActor) actor;
+            Tense(" kan", " kunne");
+            " lægge ", (ItOrThem) x1, " ind i noget.";
+        2:  CSubjectCant(x1,true); " indeholder ting.";
+        3:  CSubjectIs  (x1,true); " lukket.";
         4:  CSubjectWill(actor,true);
-            Tense(" need", " needed");
-            " to take ", (ItOrThem) x1, " off first.";
-        5:  CSubjectCant(actor,true); " put something inside itself.";
-        6:  "(first taking ", (ItOrThem) x1, " off)";
-        7:  print "There ";
-            Tense(" is", " was");
-            " no more room in ", (the) x1, ".";
-        8:  "Done.";
-        9:  CSubjectVerb(actor,false,false,"put",0,"puts","put"); " ", (the) x1, " into ", (the) x2, ".";
+            Tense(" må", " måtte");
+            " tage ", (ItOrThem) x1, " af først.";
+        5:  CSubjectCant(actor,true); " lægge noget ind i sig selv.";
+        6:  "(tager først ", (ItOrThem) x1, " af)";
+        7:  print "Der ";
+            Tense(" er", " var");
+            " ikke plads til mere i ", (the) x1, ".";
+        8:  "Udført.";
+        9:  CSubjectVerb(actor,false,false,"lægger",0,"lægger","lagde"); " ", (the) x1, " inden i ", (the) x2, ".";
     }
   Inv: switch (n) {
-        1:  CSubjectIs  (actor,false); " carrying nothing.";
-        2:  CSubjectIs  (actor,false); print " carrying";
+        1:  CSubjectIs  (actor,false); " har ingenting.";
+        2:  CSubjectIs  (actor,false); print " har";
         3:  ":";
         4:  ".";
     }
-  Jump: CSubjectVerb(actor,false,false,"jump",0,"jumps","jumped"); " on the spot, fruitlessly.";
+  Jump: CSubjectVerb(actor,false,false,"hopper",0,"hopper","hoppede"); " lidt op og ned.";
   JumpIn:
-        print "Jumping in ", (the) x1, " ";
-        Tense("would achieve", "would have achieved");
-        " nothing here.";
+        print "At hoppe i ", (the) x1, " ";
+        Tense("ville medføre", "ville have medført");
+        " intet her.";
   JumpOn:
-        print "Jumping upon ", (the) x1, " ";
-        Tense("would achieve", "would have achieved");
-        " nothing here.";
+        print "At hoppe op på ", (the) x1, " ";
+        Tense("ville medføre", "ville have medført");
+        " intet her.";
   JumpOver: switch (n) {
         1:  CSubjectVerb(actor,true,false,"achieve",0,"achieve","achieved"); " nothing by this.";
         2:  DecideAgainst();
