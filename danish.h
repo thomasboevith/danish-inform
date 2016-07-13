@@ -1162,16 +1162,16 @@ Constant COLON__TX      = ": ";
             "Score notification off.";
   NotifyOn: "Score notification on.";
   Objects: switch (n) {
-        1:  "Objects ", (nop) CSubjectVerb(actor, false, true, "have", "have", "has"), " handled:^";
-        2:  "None.";
-        3:  print "   (worn)";
-        4:  print "   (held)";
-        5:  print "   (given away)";
-        6:  print "   (in ", (name) x1, ")";
-        7:  print "   (in ", (the) x1, ")";
-        8:  print "   (inside ", (the) x1, ")";
-        9:  print "   (on ", (the) x1, ")";
-        10: print "   (lost)";
+        1:  "Objekter du ", (nop) CSubjectVerb(actor, false, true, "har", "har", "havde"), " benyttet:^";
+        2:  "Ingen.";
+        3:  print "   (båret)";
+        4:  print "   (holdt)";
+        5:  print "   (givet væk)";
+        6:  print "   (i ", (name) x1, ")";
+        7:  print "   (i ", (the) x1, ")";
+        8:  print "   (indeni ", (the) x1, ")";
+        9:  print "   (på ", (the) x1, ")";
+        10: print "   (mistet)";
     }
   Open: switch (n) {
         1:  CSubjectIs  (x1,true);
