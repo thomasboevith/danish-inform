@@ -126,18 +126,22 @@ Constant QUIT2__WD      = 'afslut';
 Constant RESTART__WD    = 'restart';
 Constant RESTORE__WD    = 'restore';
 
+! Danish has two grammatical genders: common (fælleskøn/utrum) and neuter
+! (intetkøn/neutrum), and two natural genders: masculine and feminine.
+
 Array LanguagePronouns table
 
   ! word        possible GNAs                   connected
   !             to follow:                      to:
   !             a     i
   !             s  p  s  p
-  !             mfnmfnmfnmfn
+  !             mfunmfunmfunmfun
 
-    'it'      $$001000111000                    NULL
-    'him'     $$100000100000                    NULL
-    'her'     $$010000010000                    NULL
-    'them'    $$000111000111                    NULL;
+    'han'     $$1000000010000000                NULL
+    'hende'   $$0100000001000000                NULL
+    'den'     $$0010000000100000                NULL
+    'det'     $$0001000000010000                NULL
+    'dem'     $$0000111100001111                NULL;
 
 Array LanguageDescriptors table
 
@@ -145,24 +149,25 @@ Array LanguageDescriptors table
   !             to follow:      type:           to:
   !             a     i
   !             s  p  s  p
-  !             mfnmfnmfnmfn
+  !             mfunmfunmfunmfun
 
-    'my'      $$111111111111    POSSESS_PK      0
-    'this'    $$111111111111    POSSESS_PK      0
-    'these'   $$000111000111    POSSESS_PK      0
-    'that'    $$111111111111    POSSESS_PK      1
-    'those'   $$000111000111    POSSESS_PK      1
-    'his'     $$111111111111    POSSESS_PK      'him'
-    'her'     $$111111111111    POSSESS_PK      'her'
-    'their'   $$111111111111    POSSESS_PK      'them'
-    'its'     $$111111111111    POSSESS_PK      'it'
-    'the'     $$111111111111    DEFART_PK       NULL
-    'a//'     $$111000111000    INDEFART_PK     NULL
-    'an'      $$111000111000    INDEFART_PK     NULL
-    'some'    $$000111000111    INDEFART_PK     NULL
-    'lit'     $$111111111111    light           NULL
-    'lighted' $$111111111111    light           NULL
-    'unlit'   $$111111111111    (-light)        NULL;
+    'min'     $$1110000011100000 POSSESS_PK      0
+    'mit'     $$0001000000010000 POSSESS_PK      0
+    'mine'    $$0000111100001111 POSSESS_PK      0
+    'hans'    $$1111111111111111 POSSESS_PK      'han'
+    'hendes'  $$1111111111111111 POSSESS_PK      'hende'
+    'deres'   $$1111111111111111 POSSESS_PK      'dem'
+    'dens'    $$1111111111111111 POSSESS_PK      'den'
+    'dets'    $$1111111111111111 POSSESS_PK      'det'
+    'en'      $1110000011100000  INDEFART_PK     NULL
+    'et'      $$0001000000010000 INDEFART_PK     NULL
+    'nogen'   $$0000111100001111 INDEFART_PK     NULL
+    'tænd'    $$1110000011100000 light           NULL
+    'tændt'   $$0001000000010000 light           NULL
+    'tænde'   $$1111111111111111 light           NULL
+    'tændte'  $$1000000010000000 light           NULL
+    'slukket' $$1111000011110000 (-light)        NULL
+   'slukkede' $$1000000010000000 (-light)        NULL;
 
 Array LanguageNumbers table
     'en' 1 'et' 1 'to' 2 'par' 2 'tre' 3 'fire' 4 'fem' 5
