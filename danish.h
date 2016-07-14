@@ -1392,77 +1392,77 @@ Constant COLON__TX      = ": ";
             Tense("frembringer", "frembragte");
             " ingen reaktion.";
     }
-  Think:    "What a good idea.";
+  Think:    "Det var en god idé.";
   ThrowAt: switch (n) {
-        1:  "Futile.";
-        2:  CSubjectVerb(actor,true,false,"lack",0,"lacks","lacked");
-            print " the nerve when it ";
-            Tense("comes", "came");
-            " to the crucial moment.";
+        1:  "Meningsløst.";
+        2:  CSubjectVerb(actor,true,false,"mangler",0,"mangler","manglede");
+            print " mod til det ";
+            Tense("når det kommer", "da det kom");
+            " til stykket.";
     }
   Tie: switch (n) {
-        1:  CSubjectVerb(actor,true,false,"would",0,0);
-            Tense(" achieve", " have achieved");
-            " nothing by this.";
+        1:  CSubjectVerb(actor,true,false,"ville",0,0);
+            Tense(" opnår", " have opnået");
+            " intet ved at gøre dette.";
         2:  DecideAgainst();
     }
   Touch: switch (n) {
         1:  DecideAgainst();
-        2:  CSubjectVerb(actor,true,false,"feel",0,"feels","felt"); " nothing unexpected.";
-        3:  print "That really ";
-            Tense("wouldn't", "didn't");
-            " serve any purpose.";
+        2:  CSubjectVerb(actor,true,false,"føler",0,"føler","følte"); " intet uventet.";
+        3:  print "Det ";
+            Tense("vil", "ville");
+            " virkelig ikke have noget formål.";
     }
 ! Turn: see Pull.
   Unlock:  switch (n) {
         1:  CSubjectDont(x1,true);
-            print " seem to be something ", (theActor) actor;
-            Tense(" can unlock", " could have unlocked");
+            print " ser ikke ud til at være noget, ", (theActor) actor;
+            Tense(" kan låse op", " kunne låse op");
             ".";
-        2:  CSubjectIs  (x1,true); " unlocked at the moment.";
-        3:  CSubjectDont(x1,true); " seem to fit the lock.";
-        4:  CSubjectVerb(actor,false,false,"unlock",0,"unlocks","unlocked"); " ", (the) x1, ".";
-        5:  "(first unlocking ", (the) x1, ")";
+        2:  CSubjectIs  (x1,true); " ulåst i øjeblikket.";
+        3:  CSubjectDont(x1,true); " ser ud til at passe i låsen.";
+        4:  CSubjectVerb(actor,false,false,"låser",0,"låser","låste"); " ", (the) x1, " op.";
+        5:  "(låser føst ", (the) x1, " op)";
     }
   VagueGo:  CSubjectWill(actor);
-            print " have ";
-            Tense("", "had ");
-            "to say which compass direction to go in.";
+            print " må ";
+            Tense("", " måtte ");
+            "sige hvilken kompasretning at gå i.";
   Verify: switch (n) {
         1:  "The game file has verified as intact.";
         2:  "The game file did not verify as intact, and may be corrupt.";
     }
-  Wait:     print "Time passe";
-            Tense("s", "d");
+  Wait:     print "Tiden ";
+            Tense("går", "gik");
             ".";
-  Wake:     print "The dreadful truth is, this ";
-            Tense("is", "was");
-            " not a dream.";
-  WakeOther:print "That seem";
-            Tense("s", "ed");
-            " unnecessary.";
+  Wake:     print "Dette ";
+            Tense("er", "var");
+            " desværre ikke en drøm.";
+  WakeOther:print "Det ";
+            Tense("virker", "virkede");
+            " unødvendigt.";
   Wave: switch (n) {
-        1:  print "But ";
-            CSubjectIsnt(actor,true,true); " holding ", (ThatOrThose) x1, ".";
-        2:  CSubjectVerb(actor,false,false,"look",0,"looks","looked");
-            print " ridiculous waving ", (the) x1;
+        1:  print "Men ";
+            CSubjectIsnt(actor,true,true); " bærer ikke ", (ThatOrThose) x1, ".";
+        2:  CSubjectVerb(actor,false,false,"ser",0,"ser","så");
+            print " fjollet ud, som du vifter med ", (the) x1;
             if (x2)
-                " at ", (the) x2, ".";
+                " mod ", (the) x2, ".";
             ".";
         3:  DecideAgainst();
     }
   WaveHands:
-        CSubjectVerb(actor,false,false,"wave",0,"waves","waved");
+        CSubjectVerb(actor,false,false,"vinke",0,"vinke","vinkede");
         switch (n) {
         1: ! nothing
-        2: print " at ", (the) x1;
+        2: print " til ", (the) x1;
         }
-        ", feeling foolish.";
+        ", og føler dig lidt fjollet.";
   Wear: switch (n) {
-        1:  CSubjectCant(actor,true); " wear ", (ThatOrThose) x1, "!";
-        2:  CSubjectIs  (actor,true); " not holding ", (ThatOrThose) x1, "!";
-        3:  CSubjectIs  (actor,true); " already wearing ", (ThatOrThose) x1, "!";
-        4:  CSubjectVerb(actor,false,false,"put on",0,"puts on","put on"); " ", (the) x1, ".";
+        1:  CSubjectCant(actor,true); " bærer ", (ThatOrThose) x1, "!";
+        2:  CSubjectIs  (actor,true); " holder ikke ", (ThatOrThose) x1, "!";
+        3:  CSubjectIs  (actor,true); " bærer allerede ", (ThatOrThose) x1, "!";
+        4:  CSubjectVerb(actor,false,false,"tager",0,"tager","tog"); " ", (the) x1, " på.";
     }
 ! Yes:  see No.
 ];
