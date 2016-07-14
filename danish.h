@@ -1175,32 +1175,32 @@ Constant COLON__TX      = ": ";
     }
   Open: switch (n) {
         1:  CSubjectIs  (x1,true);
-            print " not something ", (theActor) actor;
-            Tense(" can open", " could have opened");
+            print " er ikke noget som ", (theActor) actor;
+            Tense(" kan åbne", " kunne have åbnet");
             ".";
-        2:  CSubjectVerb(x1,true,false,"seem",0,"seems","seemed"); " to be locked.";
-        3:  CSubjectIs  (x1,true); " already open.";
-        4:  CSubjectVerb(actor,false,false,"open",0,"opens","opened"); print " ", (the) x1;
-            Tense(", revealing ", " and revealed ");
-                if (WriteListFrom(child(x1), ENGLISH_BIT+TERSE_BIT+CONCEAL_BIT) == 0) "nothing.";
+        2:  CSubjectVerb(x1,true,false,"virker",0,"virker","virkede"); " låst.";
+        3:  CSubjectIs  (x1,true); " allerede åben.";
+        4:  CSubjectVerb(actor,false,false,"åbner",0,"åbner","åbnede"); print " ", (the) x1;
+            Tense(", og finder ", " og fandt ");
+                if (WriteListFrom(child(x1), ENGLISH_BIT+TERSE_BIT+CONCEAL_BIT) == 0) "ingenting.";
                 ".";
-        5:  CSubjectVerb(actor,false,false,"open",0,"opens","opened"); " ", (the) x1, ".";
-        6:  "(first opening ", (the) x1, ")";
+        5:  CSubjectVerb(actor,false,false,"åbner",0,"åbner","åbnede"); " ", (the) x1, ".";
+        6:  "(åbner først ", (the) x1, ")";
     }
-  Order:    CSubjectHas(x1,false); " better things to do.";
+  Order:    CSubjectHas(x1,false); " har vigtigere ting at gøre.";
   Places: switch (n) {
-        1:  print "You have visited: ";
+        1:  print "Du har besøgt: ";
         2:  ".";
     }
-  Pray:     print "Nothing practical ";
-            Tense("results", "resulted");
-            " from ", (Possessive) actor, " prayer.";
+  Pray:     print "Intet brugbart ";
+            Tense("kommer", "kom");
+            " ud af ", (Possessive) actor, " bøn.";
   Prompt:   print "^>";
   Pronouns: switch (n) {
-        1:  print "At the moment, ";
-        2:  print "means ";
-        3:  print "is unset";
-        4:  "no pronouns are known to the game.";
+        1:  print "Akurat nu, ";
+        2:  print "betyder ";
+        3:  print "er fravalgt";
+        4:  "ingen pronomener er kendt for dette spil.";
         5:  ".";
     }
   Pull,Push,Turn: switch (n) {
