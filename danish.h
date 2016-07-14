@@ -1205,85 +1205,84 @@ Constant COLON__TX      = ": ";
     }
   Pull,Push,Turn: switch (n) {
         1:  if (player provides narrative_voice && player.narrative_voice == 3) {
-                print_ret (The) player, " ", (nop) Tense("isn't", "wasn't"),
-                  " likely to help matters by punishing ",
-                              (OnesSelf) player, " that way.";
+                print_ret (The) player, " ", (nop) Tense("er ikke", "var ikke"),
+                  " i stand til at skubbe ",
+                              (OnesSelf) player, " den vej.";
             } else {
-                "Punishing ", (OnesSelf) player, " that way ",
-                              (nop) Tense("isn't", "wasn't"), " likely to help matters.";
+                "At skubbe ", (OnesSelf) player, " den vej ",
+                              (nop) Tense("er ikke", "var ikke"), " i stand til at hjælpe på sagen.";
             }
-        2:  CSubjectIs  (x1,true); " fixed in place.";
-        3:  CSubjectIs  (actor,true); " unable to.";
-        4:  print "Nothing obvious ";
-            Tense("happens", "happened");
+        2:  CSubjectIs  (x1,true); " sidder fast.";
+        3:  CSubjectIs  (actor,true); " ude af stand til.";
+        4:  print "Intet åbentlyst ";
+            Tense("sker", "skete");
             ".";
-        5:  print "That would ";
-            Tense("be", "have been");
-            " less than courteous.";
+        5:  print "Det ville ";
+            Tense("være", "have været");
+            " intet mindre end uhøfligt.";
         6:  DecideAgainst();
     }
 ! Push: see Pull
   PushDir: switch (n) {
-        1:  print "That really ";
-            Tense("wouldn't", "didn't");
-            " serve any purpose.";
-        2:  print "That's ";
-            Tense("not", "wasn't");
-            " a direction.";
-        3:  print "Not that way ", (theActor) actor;
-            Tense(" can't", "couldn't");
+        1:  print "Det ";
+            Tense("vil", "ville");
+            " virkelig ikke have noget formål.";
+        2:  print "Det ";
+            Tense("er", "er");
+            " ikke en retning.";
+        3:  print "Det går nok ikke i den retning ", (theActor) actor;
+            Tense("", "");
             ".";
     }
   PutOn: switch (n) {
-        1:  CSubjectVerb(actor,true,false,"need",0,"needs","needed");
-            print " to be holding ", (the) x1, " before ", (theActor) actor;
-            Tense(" can", " could");
-            " put ", (ItOrThem) x1, " on top of something else.";
-        2:  CSubjectCant(actor,true,true); " put something on top of itself.";
-        3:  print "Putting things on ", (the) x1, " would";
-            Tense(" achieve", "'ve achieved");
-            " nothing.";
-        4:  CSubjectVerb(actor,true,false,"lack",0,"lacks","lacked"); " the dexterity.";
-        5:  "(first taking ", (ItOrThem) x1, " off)";
-        6:  print "There ";
-            Tense("is", "was");
-            " no more room on ", (the) x1, ".";
-        7:  "Done.";
-        8:  CSubjectVerb(actor,false,false,"put",0,"puts","put"); " ", (the) x1, " on ", (the) x2, ".";
+        1:  CSubjectVerb(actor,true,false,"må",0,"må","måtte");
+            print " holde ", (the) x1, " før ", (theActor) actor;
+            Tense(" kan", " kunne");
+            " lægge ", (ItOrThem) x1, " på noget.";
+        2:  CSubjectCant(actor,true,true); " lægge noget på sig selv.";
+        3:  print "At lægge ting på ", (the) x1, " ville";
+            Tense(" ikke medføre", " ikke have medført");
+            " noget.";
+        4:  CSubjectVerb(actor,true,false,"mangler",0,"mangler","manglede"); " smidighed.";
+        5:  "(tager først ", (ItOrThem) x1, " af)";
+        6:  print "Der ";
+            Tense("er", "var");
+            " ikke mere plads på ", (the) x1, ".";
+        7:  "Udført.";
+        8:  CSubjectVerb(actor,false,false,"lægger",0,"lægger","lagde"); " ", (the) x1, " på ", (the) x2, ".";
     }
   Quit: switch (n) {
         1:  print "Svar ja eller nej.";
         2:  print "Er du sikker på, at du vil afslutte? ";
     }
   Remove: switch (n) {
-        1:  CSubjectIs  (x1,true); " unfortunately closed.";
-        2:  print "But ";
-            CSubjectIsnt(x1,true); " there now.";
-        3:  "Removed.";
+        1:  CSubjectIs  (x1,true); " desværre lukket.";
+        2:  print "Men ";
+            CSubjectIsnt(x1,true); " der nu.";
+        3:  "Fjernet.";
     }
   Restart: switch (n) {
-        1:  print "Are you sure you want to restart? ";
-        2:  "Failed.";
+        1:  print "Er du sikker på at du vil genstarte? ";
+        2:  "Genstart fejlede.";
     }
   Restore: switch (n) {
-        1:  "Restore failed.";
+        1:  "Hentning af spil fejlede.";
         2:  "Ok.";
     }
   Rub: switch (n) {
-        1:  CSubjectVerb(actor,true,false,"achieve",0,"achieves","achieved");
-            " nothing by this.";
+        1:  CSubjectVerb(actor,true,false,"opnår",0,"opnår","opnåede");
+            " ingenting ved dette.";
         2:  DecideAgainst();
     }
   Save: switch (n) {
-        1:  "Save failed.";
+        1:  "Gemning af spillet fejlede.";
         2:  "Ok.";
     }
   Score: switch (n) {
-        1:  if (deadflag) print "In that game you scored "; else print "You have so far scored ";
-                print score, " out of a possible ", MAX_SCORE, ", in ", turns, " turn";
-                if (turns ~= 1) print "s";
+        1:  if (deadflag) print "I dette spil fik du "; else print "Du har scoret ";
+                print score, " point ud af ", MAX_SCORE, " mulige i ", turns, " træk";
                 return;
-        2:  "There is no score in this story.";
+        2:  "Der er ingen point i dette spil.";
     }
   ScriptOff: switch (n) {
         1:  "Transcripting is already off.";
@@ -1296,103 +1295,102 @@ Constant COLON__TX      = ": ";
         3:  "Attempt to begin transcript failed.";
     }
   Search: switch (n) {
-        1:  print "But it";
-            Tense("'s", " was");
-            " dark.";
-        2:  print "There ";
-            Tense("is", "was");
-            " nothing on ", (the) x1, ".";
-        3:  print "On ", (the) x1;
+        1:  print "Men det";
+            Tense(" er", " var");
+            " mørkt.";
+        2:  print "Der ";
+            Tense("er", "var");
+            " ingenting på ", (the) x1, ".";
+        3:  print "På ", (the) x1;
                 WriteListFrom(child(x1), ENGLISH_BIT+TERSE_BIT+CONCEAL_BIT+ISARE_BIT);
                 ".";
-        4:  CSubjectVerb(actor,true,false,"find",0,"finds","found"); " nothing of interest.";
-        5:  CSubjectCant(actor,true); " see inside, since ", (the) x1, " ", (IsOrAre) x1, " closed.";
-        6:  "", (The) x1, " ", (IsOrAre) x1, " empty.";
+        4:  CSubjectVerb(actor,true,false,"finder",0,"finder","fandt"); " ingenting af interesse.";
+        5:  CSubjectCant(actor,true); " se indeni, eftersom ", (the) x1, " ", (IsOrAre) x1, " lukket.";
+        6:  "", (The) x1, " ", (IsOrAre) x1, " tom.";
 
-        7:  print "In ", (the) x1;
+        7:  print "I ", (the) x1;
                 WriteListFrom(child(x1), ENGLISH_BIT+TERSE_BIT+CONCEAL_BIT+ISARE_BIT);
                 ".";
     }
    ! Preceding "No," unable to be used for Set and SetTo
-  Set:      CSubjectCant(actor,true); " set ", (ThatOrThose) x1, ".";
-  SetTo:    CSubjectCant(actor,true); " set ", (ThatOrThose) x1, " to anything.";
+  Set:      CSubjectCant(actor,true); " sæt ", (ThatOrThose) x1, ".";
+  SetTo:    CSubjectCant(actor,true); " sætte ", (ThatOrThose) x1, " til noget.";
   Show: switch (n) {
-        1:  CSubjectIsnt(actor,true); " holding ", (the) x1, ".";
-        2:  CSubjectIs  (x1,true); " unimpressed.";
+        1:  CSubjectIsnt(actor,true); " holder ", (the) x1, ".";
+        2:  CSubjectIs  (x1,true); " ikke imponerende.";
     }
-  Sing:     print (PossessiveCaps) actor, " singing ";
-            Tense("is", "was");
-            " abominable.";
-  Sleep:    CSubjectIsnt(actor,true); " feeling especially drowsy.";
+  Sing:     print (PossessiveCaps) actor, " ";
+            Tense("har", "havde");
+            " ikke meget af en sangstemme";
+  Sleep:    CSubjectIsnt(actor,true); " særlig søvning.";
   Smell: switch (n) {
-        1:  CSubjectVerb(actor,true,false,"smell",0,"smells","smelled"); " nothing unexpected.";
+        1:  CSubjectVerb(actor,true,false,"lugter",0,"lugter","lugtede"); " ikke noget uventet.";
         2:  DecideAgainst();
     }
             #Ifdef DIALECT_US;
-  Sorry:    "Oh, don't apologize.";
+  Sorry:    "Lad gå for denne gang.";
             #Ifnot;
-  Sorry:    "Oh, don't apologise.";
+  Sorry:    "Lad gå for denne gang.";
             #Endif;
   Squeeze: switch (n) {
         1:  DecideAgainst();
-        2:  CSubjectVerb(actor,true,false,"achieve",0,"achieves","achieved"); " nothing by this.";
+        2:  CSubjectVerb(actor,true,false,"opnår",0,"opnår","opnåede"); " ikke noget ved dette.";
     }
-  Strong:   print "Real adventurers ";
-            Tense ("do", "did");
-            " not use such language.";
-  Swim:     print "There";
-            Tense("'s not", " wasn't");
-            " enough water to swim in.";
-  Swing:    print "There";
-            Tense("'s", " was");
-            " nothing sensible to swing here.";
+  Strong:   print "Ægte eventyrere ";
+            Tense ("taler", "talte");
+            " ikke sådan.";
+  Swim:     print "Der ";
+            Tense("er ikke", " var ikke");
+            " nok vand at svømme i.";
+  Swing:    print "Der ";
+            Tense("er", "var");
+            " inget fornuftigt at svinge sig i her.";
   SwitchOff: switch (n) {
         1:  CSubjectIs  (x1,true);
-            print " not something ", (theActor) actor, " ";
-            Tense("can", "could");
-            " switch.";
-        2:  CSubjectIs  (x1,true); " already off.";
-        3:  CSubjectVerb(actor,false,false,"switch",0,"switches","switched"); " ", (the) x1, " off.";
+            print " ikke noget ", (theActor) actor, " ";
+            Tense("kan", "kunne");
+            " skrue af eller på.";
+        2:  CSubjectIs  (x1,true); " allerede slukket.";
+        3:  CSubjectVerb(actor,false,false,"slukker",0,"slukker","slukkede"); " ", (the) x1, ".";
     }
   SwitchOn: switch (n) {
         1:  CSubjectIs  (x1,true);
-            print " not something ", (theActor) actor, " ";
-            Tense("can", "could");
-            " switch.";
-        2:  CSubjectIs  (x1,true); " already on.";
-        3:  CSubjectVerb(actor,false,false,"switch",0,"switches","switched"); " ", (the) x1, " on.";
+            print " ikke noget ", (theActor) actor, " ";
+            Tense("kan", "kunne");
+            " skrue af eller på.";
+        2:  CSubjectIs  (x1,true); " allerede tændt.";
+        3:  CSubjectVerb(actor,false,false,"tænder",0,"tænder","tændte"); " ", (the) x1, " .";
     }
 
   Take: switch (n) {
-        1:  "Taken.";
-        2:  CSubjectIs  (actor,false); " always self-possessed.";
-        3:  print "I don't suppose ", (the) x1, " would ";
-            Tense("care", "have cared");
-            " for that.";
+        1:  "Taget.";
+        2:  CSubjectIs  (actor,false); " har altid været lidt selvoptaget.";
+        3:  print "Jeg tror ikke ", (the) x1, " ville ";
+            Tense("synes", "have synes");
+            " om det.";
         4:  CSubjectWill(actor,true);
-            print " have ";
-            Tense("", "had ");
-            "to get ", (nop) SupportObj(x1,"off","out of"), " ", (the) x1, " first.";
-        5:  CSubjectVerb(actor,true,false,"already have",0,"already has","already had"); " ", (ThatOrThose) x1, ".";
-        6:  CSubjectVerb(x2,true,false,"seem",0,"seems","seemed"); " to belong to ", (the) x1, ".";
-        7:  CSubjectVerb(x2,true,false,"seem",0,"seems","seemed"); " to be a part of ", (the) x1, ".";
-        8:  CSubjectIs  (x1,true); " not available.";
-        9:  CSubjectIs  (x1,true); " not open.";
-        10: CSubjectIs  (x1,true); " hardly portable.";
-        11: CSubjectIs  (x1,true); " fixed in place.";
-        12: CSubjectIs  (actor,true); " carrying too many things already.";
-        13: "(putting ", (the) x1, " into ", (the) x2, " to make room)";
+            Tense(" må ", " måtte ");
+            " tage ", (nop) SupportObj(x1,"af","ud af"), " ", (the) x1, " først.";
+        5:  CSubjectVerb(actor,true,false,"har allerede",0,"har allerede","havde allerede"); " ", (ThatOrThose) x1, ".";
+        6:  CSubjectVerb(x2,true,false,"ser ud",0,"ser ud","så ud"); " til at tilhøre ", (the) x1, ".";
+        7:  CSubjectVerb(x2,true,false,"ser ud",0,"ser ud","så ud"); " til at være en del af ", (the) x1, ".";
+        8:  CSubjectIs  (x1,true); " ikke tilgængelig.";
+        9:  CSubjectIs  (x1,true); " ikke åben.";
+        10: CSubjectIs  (x1,true); " knapt bærbar.";
+        11: CSubjectIs  (x1,true); " sidder fast.";
+        12: CSubjectIs  (actor,true); " bærer på for mange ting allerede.";
+        13: "(lægger ", (the) x1, " ind i ", (the) x2, " for at gøre plads)";
     }
   Taste: switch (n) {
-        1:  CSubjectVerb(actor,true,false,"taste",0,"tastes","tasted"); " nothing unexpected.";
+        1:  CSubjectVerb(actor,true,false,"smager",0,"smager","smagte"); " intet uventet.";
         2:  DecideAgainst();
     }
   Tell: switch (n) {
-        1:  CSubjectVerb(actor,false,false,"talk",0,"talks","talked");
-            " to ", (OnesSelf) actor, " for a while.";
-        2:  print "This provoke";
-            Tense("s", "d");
-            " no reaction.";
+        1:  CSubjectVerb(actor,false,false,"taler",0,"taler","talte");
+            " til ", (OnesSelf) actor, " et lille stykke tid.";
+        2:  print "Dette ";
+            Tense("frembringer", "frembragte");
+            " ingen reaktion.";
     }
   Think:    "What a good idea.";
   ThrowAt: switch (n) {
