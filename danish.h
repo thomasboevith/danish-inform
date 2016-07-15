@@ -135,13 +135,13 @@ Array LanguagePronouns table
   !             to follow:                      to:
   !             a     i
   !             s  p  s  p
-  !             mfunmfunmfunmfun
+  !             mfnmfnmfnmfn
 
-    'han'     $$1000000010000000                NULL
-    'hende'   $$0100000001000000                NULL
-    'den'     $$0010000000100000                NULL
-    'det'     $$0001000000010000                NULL
-    'dem'     $$0000111100001111                NULL;
+    'han'     $$100000100000                    NULL
+    'hun'     $$010000010000                    NULL
+    'den'     $$001100001100                    NULL
+    'det'     $$001000001000                    NULL
+    'dem'     $$000111000111                    NULL;
 
 Array LanguageDescriptors table
 
@@ -149,25 +149,22 @@ Array LanguageDescriptors table
   !             to follow:      type:           to:
   !             a     i
   !             s  p  s  p
-  !             mfunmfunmfunmfun
+  !             mfnmfnmfnmfn
 
-    'min'     $$1110000011100000 POSSESS_PK      0
-    'mit'     $$0001000000010000 POSSESS_PK      0
-    'mine'    $$0000111100001111 POSSESS_PK      0
-    'hans'    $$1111111111111111 POSSESS_PK      'han'
-    'hendes'  $$1111111111111111 POSSESS_PK      'hende'
-    'deres'   $$1111111111111111 POSSESS_PK      'dem'
-    'dens'    $$1111111111111111 POSSESS_PK      'den'
-    'dets'    $$1111111111111111 POSSESS_PK      'det'
-    'en'      $1110000011100000  INDEFART_PK     NULL
-    'et'      $$0001000000010000 INDEFART_PK     NULL
-    'nogen'   $$0000111100001111 INDEFART_PK     NULL
-    'tænd'    $$1110000011100000 light           NULL
-    'tændt'   $$0001000000010000 light           NULL
-    'tænde'   $$1111111111111111 light           NULL
-    'tændte'  $$1000000010000000 light           NULL
-    'slukket' $$1111000011110000 (-light)        NULL
-   'slukkede' $$1000000010000000 (-light)        NULL;
+    'min'     $$001100001100    POSSESS_PK      0
+    'mit'     $$001000001000    POSSESS_PK      0
+    'mine'    $$000111000111    POSSESS_PK      0
+    'hans'    $$111111111111    POSSESS_PK      'han'
+    'hendes'  $$111111111111    POSSESS_PK      'hende'
+    'deres'   $$111111111111    POSSESS_PK      'dem'
+    'dens'    $$111111111111    POSSESS_PK      'den'
+    'dets'    $$111111111111    POSSESS_PK      'det'
+    'en'      $$001100001100    INDEFART_PK     NULL
+    'et'      $$001000001000    INDEFART_PK     NULL
+    'nogen'   $$000111000111    INDEFART_PK     NULL
+    'tændt'   $$111111111111    light           NULL
+    'tændt'   $$111111111111    light           NULL
+    'slukket' $$111111111111    (-light)        NULL;
 
 Array LanguageNumbers table
     'en' 1 'et' 1 'to' 2 'par' 2 'tre' 3 'fire' 4 'fem' 5
