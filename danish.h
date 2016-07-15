@@ -195,11 +195,12 @@ Constant LanguageContractionForms = 1;     ! Danish has one.
 
 Array LanguageArticles -->
 
- !   Contraction form 0:     Contraction form 1:
- !   Cdef   Def    Indef     Cdef   Def    Indef
+ !   Contraction form 0:
+ !   Cdef   Def    Indef
 
-     "The " "the " "a "      "The " "the " "an "          ! Articles 0
-     "The " "the " "some "   "The " "the " "some ";       ! Articles 1
+     "Den " "den " "en "     ! Masuline, feminine, utrum
+     "Det " "det " "et "     ! Neutrum
+     "De "  "de "  "nogle "  ! Plural
 
                    !             a           i
                    !             s     p     s     p
