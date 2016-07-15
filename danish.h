@@ -133,35 +133,35 @@ Array LanguagePronouns table
 
   ! word        possible GNAs                   connected
   !             to follow:                      to:
-  !             a     i
-  !             s  p  s  p
-  !             mfnmfnmfnmfn
+  !             a       i
+  !             s   p   s   p
+  !             mfunmfunmfunmfun
 
-    'han'     $$100000100000                    NULL
-    'hun'     $$010000010000                    NULL
-    'den'     $$001100001100                    NULL
-    'det'     $$001000001000                    NULL
-    'dem'     $$000111000111                    NULL;
+    'han'     $$1000000010000000                NULL
+    'hun'     $$0100000001000000                NULL
+    'den'     $$0010000000100000                NULL
+    'det'     $$0001000000001000                NULL
+    'dem'     $$0000111100001111                NULL;
 
 Array LanguageDescriptors table
 
   ! word        possible GNAs   descriptor      connected
   !             to follow:      type:           to:
-  !             a     i
-  !             s  p  s  p
-  !             mfnmfnmfnmfn
+  !             a       i
+  !             s   p   s   p
+  !             mfunmfunmfunmfun
 
-    'min'     $$001100001100    POSSESS_PK      0
-    'mit'     $$001000001000    POSSESS_PK      0
-    'mine'    $$000111000111    POSSESS_PK      0
-    'hans'    $$111111111111    POSSESS_PK      'han'
-    'hendes'  $$111111111111    POSSESS_PK      'hende'
-    'deres'   $$111111111111    POSSESS_PK      'dem'
-    'dens'    $$111111111111    POSSESS_PK      'den'
-    'dets'    $$111111111111    POSSESS_PK      'det'
-    'en'      $$001100001100    INDEFART_PK     NULL
-    'et'      $$001000001000    INDEFART_PK     NULL
-    'nogen'   $$000111000111    INDEFART_PK     NULL
+    'min'     $$0010000000100000 POSSESS_PK     0
+    'mit'     $$0001000000010000 POSSESS_PK     0
+    'mine'    $$0000111100001111 POSSESS_PK     0
+    'hans'    $$1111111111111111 POSSESS_PK     'han'
+    'hendes'  $$1111111111111111 POSSESS_PK     'hende'
+    'deres'   $$1111111111111111 POSSESS_PK     'dem'
+    'dens'    $$1111111111111111 POSSESS_PK     'den'
+    'dets'    $$1111111111111111 POSSESS_PK     'det'
+    'en'      $$0010000000100000 INDEFART_PK    NULL
+    'et'      $$0001000000010000 INDEFART_PK    NULL
+    'nogen'   $$0000111100001111 INDEFART_PK    NULL
     'tændt'   $$111111111111    light           NULL
     'tændt'   $$111111111111    light           NULL
     'slukket' $$111111111111    (-light)        NULL;
@@ -198,15 +198,15 @@ Array LanguageArticles -->
  !   Contraction form 0:
  !   Cdef   Def    Indef
 
-     "Den " "den " "en "     ! Masuline, feminine, utrum
-     "Det " "det " "et "     ! Neutrum
-     "De "  "de "  "nogle "  ! Plural
+     "Den " "den " "en "     ! 0 masuline, feminine, utrum
+     "Det " "det " "et "     ! 1 neutrum
+     "De "  "de "  "nogle "; ! 2 plural
 
-                   !             a           i
-                   !             s     p     s     p
-                   !             m f n m f n m f n m f n
+                   !             a               i
+                   !             s       p       s       p
+                   !             m f u n m f u n m f u n m f u n
 
-Array LanguageGNAsToArticles --> 0 0 0 1 1 1 0 0 0 1 1 1;
+Array LanguageGNAsToArticles --> 0 0 0 1 2 2 2 2 0 0 0 1 2 2 2 2;
 
 [ LanguageDirection d;
     switch (d) {
