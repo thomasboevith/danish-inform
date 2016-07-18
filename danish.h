@@ -582,17 +582,17 @@ Constant COLON__TX      = ": ";
 [ CSubjectHas obj reportage nocaps;
     if (obj == player) {
         if (player provides narrative_voice) switch (player.narrative_voice) {
-          1:  Tense("I've", "I had"); return;
+          1:  Tense("Jeg har", "Jeg havde"); return;
           2:  ! Do nothing.
           3:  CDefart(player);
-              Tense(" has", " had"); return;
+              Tense(" har", " havde"); return;
           default: RunTimeError(16, player.narrative_voice);
         }
-        if (nocaps) Tense("you've", "you'd");
-        else Tense("You've", "You'd");
+        if (nocaps) Tense("du har", "du havde");
+        else Tense("Du har", "Du havde");
         return;
     }
-    SubjectNotPlayer(obj, reportage, "have", "has", "had");
+    SubjectNotPlayer(obj, reportage, "har", "har", "havde");
 ];
 
 [ CSubjectWill obj reportage nocaps;
@@ -620,7 +620,7 @@ Constant COLON__TX      = ": ";
 ];
 
 [ CSubjectDont obj reportage nocaps;
-    CSubjectVerb(obj, reportage, nocaps, "don't", 0, "doesn't", "didn't");
+    CSubjectVerb(obj, reportage, nocaps, "er ikke", 0, "er ikke", "var ikke");
 ];
 
 
@@ -1190,7 +1190,7 @@ Constant COLON__TX      = ": ";
         5:  CSubjectVerb(actor,false,false,"åbner",0,"åbner","åbnede"); " ", (the) x1, ".";
         6:  "(åbner først ", (the) x1, ")";
     }
-  Order:    CSubjectHas(x1,false); " har vigtigere ting at gøre.";
+  Order:    CSubjectHas(x1,false); " vigtigere ting at gøre.";
   Places: switch (n) {
         1:  print "Du har besøgt: ";
         2:  ".";
