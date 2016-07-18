@@ -612,11 +612,11 @@ Constant COLON__TX      = ": ";
 ];
 
 [ CSubjectCan obj reportage nocaps;
-    CSubjectVerb(obj, reportage, nocaps, "can", 0, "can", "could");
+    CSubjectVerb(obj, reportage, nocaps, "kan", 0, "kan", "kunne");
 ];
 
 [ CSubjectCant obj reportage nocaps;
-    CSubjectVerb(obj, reportage, nocaps, "can't", 0, "can't", "couldn't");
+    CSubjectVerb(obj, reportage, nocaps, "kan ikke", 0, "kan ikke", "kunne ikke");
 ];
 
 [ CSubjectDont obj reportage nocaps;
