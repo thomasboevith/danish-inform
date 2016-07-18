@@ -403,16 +403,16 @@ Constant COLON__TX      = ": ";
 [ ThatOrThose obj;
     if (obj == player) {
 	if (player provides narrative_voice) {
-	    if (player.narrative_voice == 1) { print "mig"; return; }
+	    if (player.narrative_voice == 1) { print "jeg"; return; }
 	    if (player.narrative_voice == 3) { CDefart(player); return; }
 	}
 	print "du";
 	return;
     }
-    if (obj has pluralname)       { print "dem"; return; }
-    if (obj has female)           { print "hende"; return; }
+    if (obj has pluralname)       { print "de"; return; }
+    if (obj has female)           { print "hun"; return; }
     if (obj has male or animate)
-        if (obj hasnt neuter)     { print "ham"; return; }
+        if (obj hasnt neuter)     { print "han"; return; }
     print "den";
 ];
 
@@ -440,13 +440,13 @@ Constant COLON__TX      = ": ";
 	    if (player.narrative_voice == 1) { print "Jeg"; return; }
 	    if (player.narrative_voice == 3) { CDefart(player); return; }
 	}
-	print "Dig";
+	print "Du";
 	return;
     }
-    if (obj has pluralname)		{ print "Dem"; return; }
-    if (obj has female)			{ print "Hende"; return; }
+    if (obj has pluralname)		{ print "De"; return; }
+    if (obj has female)			{ print "Hun"; return; }
     if (obj has male or animate) {
-        if (obj hasnt neuter)		{ print "Ham"; return; }
+        if (obj hasnt neuter)		{ print "Han"; return; }
     }
     print "Den";
 ];
@@ -714,9 +714,9 @@ Constant COLON__TX      = ": ";
 ];
 
 [ DecideAgainst;
-    CSubjectVerb(actor, false, false, "beslutter",0,"beslutter","besluttede");
-    print " at";
-    Tense(" det ikke er", " det ikke var");
+    CSubjectVerb(actor, false, false, "bestemmer",0,"bestemmer","bestemte");
+    print " dig for, at det ikke";
+    Tense(" er", " var");
     " en særlig god ide.";
 ];
 
