@@ -714,10 +714,10 @@ Constant COLON__TX      = ": ";
 ];
 
 [ DecideAgainst;
-    CSubjectVerb(actor, false, false, "decide",0,"decides","decided");
-    print " that";
-    Tense("'s not", " wasn't");
-    " such a good idea.";
+    CSubjectVerb(actor, false, false, "beslutter",0,"beslutter","besluttede");
+    print " at";
+    Tense(" det ikke er", " det ikke var");
+    " en særlig god ide.";
 ];
 
 #Ifdef TARGET_ZCODE;
