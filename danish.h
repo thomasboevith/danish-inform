@@ -550,33 +550,33 @@ Constant COLON__TX      = ": ";
 [ CSubjectIs obj reportage nocaps;
     if (obj == player) {
         if (player provides narrative_voice) switch (player.narrative_voice) {
-          1:  Tense("I'm", "I was"); return;
+          1:  Tense("Jeg er", "Jeg var"); return;
           2:  ! Do nothing.
           3:  CDefart(player);
-              Tense(" is", " was"); return;
+              Tense(" er", " var"); return;
           default: RunTimeError(16, player.narrative_voice);
         }
-        if (nocaps) Tense("you're", "you were");
-        else Tense("You're", "You were");
+        if (nocaps) Tense("du er", "du var");
+        else Tense("Du er", "Du var");
         return;
     }
-    SubjectNotPlayer(obj, reportage, "are", "is", "was");
+    SubjectNotPlayer(obj, reportage, "er", "er", "var");
 ];
 
 [ CSubjectIsnt obj reportage nocaps;
     if (obj == player) {
         if (player provides narrative_voice) switch (player.narrative_voice) {
-          1:  Tense("I'm not", "I wasn't"); return;
+          1:  Tense("Jeg er ikke", "Jeg var ikke"); return;
           2:  ! Do nothing.
           3:  CDefart(player);
-              Tense(" isn't", " wasn't"); return;
+              Tense(" er ikke", " var ikke"); return;
           default: RunTimeError(16, player.narrative_voice);
         }
-        if (nocaps) Tense("you aren't", "you weren't");
-        else Tense("You aren't", "You weren't");
+        if (nocaps) Tense("du er ikke", "du var ikke");
+        else Tense("Du er ikke", "Du var ikke");
 	return;
     }
-    SubjectNotPlayer(obj, reportage, "aren't", "isn't", "wasn't");
+    SubjectNotPlayer(obj, reportage, "er ikke", "er ikke", "var ikke");
 ];
 
 [ CSubjectHas obj reportage nocaps;
@@ -777,14 +777,14 @@ Constant COLON__TX      = ": ";
             print (ThatOrThose) x1;
             " ikke til salg.";
   Climb: switch (n) {
-        1:  print "At klatre ", (ThatOrThose) x1, " vil";
-            Tense(" opnå", "le opnå");
-            " meget lidt.";
+        1:  print "At klatre op på ", (ThatOrThose) x1;
+            Tense(" vil", " ville ");
+            " ikke medføre meget godt.";
         2:  DecideAgainst();
     }
   Close: switch (n) {
         1:  CSubjectIs(x1,true);
-            print " ikke noget ", (theActor) actor;
+            print " ikke noget, som ", (theActor) actor;
             Tense(" kan lukke", " kunne have lukket");
             ".";
         2:  CSubjectIs(x1,true); " allerede lukket.";
