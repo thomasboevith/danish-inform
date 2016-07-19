@@ -185,11 +185,24 @@ Verb meta 'glklist'
 Verb 'answer' 'say' 'shout' 'speak'
     * topic 'to' creature                       -> Answer;
 
-Verb 'ask'
-    * creature 'about' topic                    -> Ask
-    * creature 'for' noun                       -> AskFor
-    * creature 'to' topic                       -> AskTo
-    * 'that' creature topic                     -> AskTo;
+!Verb 'ask'
+!    * creature 'about' topic                    -> Ask
+!    * creature 'for' noun                       -> AskFor
+!    * creature 'to' topic                       -> AskTo
+!    * 'that' creature topic                     -> AskTo;
+
+Verb 'bed'
+                *                                           -> Pray
+                * 'om' 'at' 'få' noun 'af' creature         -> AskFor reverse
+                * 'om' noun 'af' creature                   -> AskFor reverse
+                * creature 'om' noun                        -> AskFor
+                * creature 'om' 'at' 'give' 'mig' noun      -> AskFor
+                * creature 'give' 'mig' noun                -> AskFor;
+
+Verb 'befal' 'anmod' 'beordre'
+                * creature 'om' noun                        -> AskFor
+                * creature 'om' 'at' 'give' 'mig' noun      -> AskFor
+                * creature 'giv' 'mig' noun                 -> AskFor;
 
 Verb 'attack' 'break' 'crack' 'destroy'
      'fight' 'hit' 'kill' 'murder' 'punch'
@@ -379,6 +392,9 @@ Verb 'read'
     * 'about' topic 'in' noun                   -> Consult
     * topic 'in' noun                           -> Consult;
 
+Verb 'fisk' * danishnoun -> Take
+            * danishnoun 'to' creature          -> Give;
+
 Verb 'remove'
     * held                                      -> Disrobe
     * multi                                     -> Take
@@ -419,6 +435,9 @@ Verb 'smell' 'sniff'
 
 Verb 'sorry'
     *                                           -> Sorry;
+Verb 'spørg'
+    * creature 'om' topic                       -> Ask
+    * 'om' 'at' 'få' noun 'af' creature         -> AskFor reverse;
 
 Verb 'squeeze' 'squash'
     * noun                                      -> Squeeze;
