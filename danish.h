@@ -136,7 +136,6 @@ Array LanguagePronouns table
   !             a     i
   !             s  p  s  p
   !             mfnmfnmfnmfn
-
     'han'     $$100000100000                    NULL
     'hun'     $$010000010000                    NULL
     'det'     $$001000001000                    NULL
@@ -205,7 +204,6 @@ Array LanguageArticles -->
                    !             a           i
                    !             s     p     s     p
                    !             m f n m f n m f n m f n
-
 Array LanguageGNAsToArticles --> 0 0 1 2 2 2 0 0 1 2 2 2;
 
 [ LanguageDirection d;
@@ -399,6 +397,16 @@ Constant COLON__TX      = ": ";
 ! "him" is in the accusative case.  It won't appear at the beginning.
 ! ----------------------------------------------------------------------------
 
+! Definitive noun
+[ DefinitiveNoun obj;
+    if (obj has uter) { print (name) obj, "en"; return; }
+    if (obj has neuter) { print (name) obj, "et"; return; }
+    if (obj has pluralname) { print (name) obj, "ne"; return; }
+    if (obj has female) { print (name) obj; return; }
+    if (obj has male) { print (name) obj; return; }
+    return;
+];
+
 ! Accusative
 [ ThatOrThose obj;
     if (obj == player) {
@@ -541,7 +549,7 @@ Constant COLON__TX      = ": ";
               print " ", (string) v3; return;
           default: RunTimeError(16, player.narrative_voice);
         }
-        if (nocaps) { print "du ", (string) v2; return; }
+        if (nocaps) { print "", (string) v2; print " du"; return; }
 	print "Du ", (string) v2; return;
     }
     SubjectNotPlayer(obj, reportage, v2, v3);
@@ -845,7 +853,7 @@ Constant COLON__TX      = ": ";
         4:  "Smidt.";
     }
   Eat: switch (n) {
-        1:  CSubjectIs(x1,true); " er uspiselig.";
+        1:  CSubjectIs(x1,true); " uspiselig.";
         2:  CSubjectVerb(actor,false,false,"spiser",0,"spiser", "spiste"); print " ", (the) x1;
                 if (actor == player) ". Ikke værst."; else ".";
     }
@@ -961,8 +969,8 @@ Constant COLON__TX      = ": ";
         9:  CSubjectVerb(actor,false,false,"lægger",0,"lægger","lagde"); " ", (the) x1, " inden i ", (the) x2, ".";
     }
   Inv: switch (n) {
-        1:  CSubjectIs  (actor,false); " har ingenting.";
-        2:  CSubjectIs  (actor,false); print " har";
+        1:  CSubjectVerb(actor,false,false,"har",0,"har","havde"); print " ingenting.";
+        2:  CSubjectVerb(actor,false,false,"har",0,"har","havde"); print "";
         3:  ":";
         4:  ".";
     }
@@ -1105,7 +1113,7 @@ Constant COLON__TX      = ": ";
             Tense("kan", "kunne"); " ikke se hvem.";
         24: CSubjectCant(actor, true); " tale med ", (the) x1, ".";
         25: "For at tale med nogen, prøv ~person, hej~ eller ligende.";
-        26: "(tager først ", (the) x1, ")";
+        26: print "(tager først "; DefinitiveNoun(x1); print ")^";
         27: "Den ytring forstod jeg ikke.";
         28: print "Hvis jeg forstod dig ret, så tror jeg at du ville ";
         29: "Det tal forstod jeg ikke.";
@@ -1117,7 +1125,7 @@ Constant COLON__TX      = ": ";
         34: "Du kan kun nævne flere ting én gang per linje.";
         35: "Jeg er ikke sikker på hvad ~", (address) x1, "~ refererer til.";
         36: "Du udelod noget som alligevel ikke var med!";
-        37: CSubjectCan(actor,true); " kun gøre det ved noget levende.";
+        37: CSubjectCan(actor,true); " kun gøre det til noget levende.";
             #Ifdef DIALECT_US;
         38: "Det verbum kender jeg ikke.";
             #Ifnot;
@@ -1137,14 +1145,12 @@ Constant COLON__TX      = ": ";
         45: print "Hvad mener du med, ";
         46: print "Mener du, ";
         47: "Beklager, men du kan kun have én ting her. Hvilken?";
-        48: print "Hvem ";
-            CSubjectVerb(player, false, true, "vil", "vil", "vil", "ville");
-            if (x1 ~= player && x1 ~= nothing) print " ", (the) x1;
-            print " til "; PrintCommand(); "?";
-        49: print "Hvad ";
-            CSubjectVerb(player, false, true, "vil", "vil", "vil", "ville");
-            if (x1 ~= player && x1 ~= nothing) print " ", (the) x1;
-            print " til "; PrintCommand(); "?";
+        48: CSubjectVerb(player, false, false, "mener", "mener", "mener", "mente");
+            print " nok: ";
+            PrintCommand(); print " 'nogen' eller 'noget', men til 'hvem' eller 'hvad'?";
+        49: CSubjectVerb(player, false, false, "mener", "mener", "mener", "mente");
+            print " nok: ";
+            PrintCommand(); print " 'nogen' eller 'noget', men 'hvem' eller 'hvad'?";
         50: print "Score er lige gået ";
             if (x1 > 0) print "op"; else { x1 = -x1; print "ned"; }
             print " med ", (number) x1, " point";
