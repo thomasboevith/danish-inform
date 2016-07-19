@@ -131,40 +131,39 @@ Constant RESTORE__WD    = 'restore';
 
 Array LanguagePronouns table
 
-  ! word        possible GNAs                   connected
-  !             to follow:                      to:
-  !             a       i
-  !             s   p   s   p
-  !             mfunmfunmfunmfun
+  ! word        possible GNAs                 connected
+  !             to follow:                    to:
+  !             a     i
+  !             s  p  s  p
+  !             mfnmfnmfnmfn
 
-    'han'     $$1000000010000000                NULL
-    'hun'     $$0100000001000000                NULL
-    'den'     $$0010000000100000                NULL
-    'det'     $$0001000000001000                NULL
-    'dem'     $$0000111100001111                NULL;
+    'han'     $$100000100000                    NULL
+    'hun'     $$010000010000                    NULL
+    'det'     $$001000001000                    NULL
+    'den'     $$101000101000                    NULL
+    'dem'     $$000111000111                    NULL;
 
 Array LanguageDescriptors table
 
   ! word        possible GNAs   descriptor      connected
   !             to follow:      type:           to:
-  !             a       i
-  !             s   p   s   p
-  !             mfunmfunmfunmfun
-
-    'min'     $$0010000000100000 POSSESS_PK     0
-    'mit'     $$0001000000010000 POSSESS_PK     0
-    'mine'    $$0000111100001111 POSSESS_PK     0
-    'hans'    $$1111111111111111 POSSESS_PK     'han'
-    'hendes'  $$1111111111111111 POSSESS_PK     'hende'
-    'deres'   $$1111111111111111 POSSESS_PK     'dem'
-    'dens'    $$1111111111111111 POSSESS_PK     'den'
-    'dets'    $$1111111111111111 POSSESS_PK     'det'
-    'en'      $$0010000000100000 INDEFART_PK    NULL
-    'et'      $$0001000000010000 INDEFART_PK    NULL
-    'nogen'   $$0000111100001111 INDEFART_PK    NULL
-    'tændt'   $$111111111111    light           NULL
-    'tændt'   $$111111111111    light           NULL
-    'slukket' $$111111111111    (-light)        NULL;
+  !             a     i
+  !             s  p  s  p
+  !             mfnmfnmfnmfn
+    'mit'     $$001000001000 POSSESS_PK     0
+    'min'     $$101000001000 POSSESS_PK     0
+    'mine'    $$001111101000 POSSESS_PK     0
+    'hans'    $$111111111111 POSSESS_PK     'han'
+    'hendes'  $$111111111111 POSSESS_PK     'hende'
+    'deres'   $$111111111111 POSSESS_PK     'dem'
+    'dens'    $$111111111111 POSSESS_PK     'den'
+    'dets'    $$111111111111 POSSESS_PK     'det'
+    'et'      $$001000001000 INDEFART_PK    NULL
+    'en'      $$101000101000 INDEFART_PK    NULL
+    'nogen'   $$001111001111 INDEFART_PK    NULL
+    'tændt'   $$111111111111 light          NULL
+    'tændt'   $$111111111111 light          NULL
+    'slukket' $$111111111111 (-light)       NULL;
 
 Array LanguageNumbers table
     'en' 1 'et' 1 'to' 2 'par' 2 'tre' 3 'fire' 4 'fem' 5
@@ -182,6 +181,7 @@ Array LanguageNumbers table
 ! ------------------------------------------------------------------------------
 !   Part IV.   Printing
 ! ------------------------------------------------------------------------------
+Attribute uter alias male;
 
 Constant LanguageAnimateGender   = male;
 Constant LanguageInanimateGender = neuter;
@@ -202,11 +202,11 @@ Array LanguageArticles -->
      "Det " "det " "et "     ! 1 neutrum
      "De "  "de "  "nogle "; ! 2 plural
 
-                   !             a               i
-                   !             s       p       s       p
-                   !             m f u n m f u n m f u n m f u n
+                   !             a           i
+                   !             s     p     s     p
+                   !             m f n m f n m f n m f n
 
-Array LanguageGNAsToArticles --> 0 0 0 1 2 2 2 2 0 0 0 1 2 2 2 2;
+Array LanguageGNAsToArticles --> 0 0 1 2 2 2 0 0 1 2 2 2;
 
 [ LanguageDirection d;
     switch (d) {
@@ -783,7 +783,7 @@ Constant COLON__TX      = ": ";
         2:  DecideAgainst();
     }
   Close: switch (n) {
-        1:  CSubjectIs(x1,true);
+        1:  CSubjectIs(x1,true); Tense(" er", " var");
             print " ikke noget, som ", (theActor) actor;
             Tense(" kan lukke", " kunne have lukket");
             ".";
