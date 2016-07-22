@@ -397,6 +397,48 @@ Constant COLON__TX      = ": ";
 ! "him" is in the accusative case.  It won't appear at the beginning.
 ! ----------------------------------------------------------------------------
 
+! Danish noun
+[ _danish_noun obj word a l;
+    ! Is word in object property?
+    if (WordInProperty(word, obj, name)) rtrue;
+    ! If not check if it was maybe written in definitive form
+    if (obj has uter) {
+        a = WordAddress(wn-1);
+        l = WordLength(wn-1);
+        if (l >= 3 && a->(l-2) == 'e' && a->(l-1) == 'n') {
+            word = DictionaryLookup(a, l-2);
+            if (WordInProperty(word, obj, name)) rtrue;
+        }
+    }
+    if (obj has neuter) {
+        a = WordAddress(wn-1);
+        l = WordLength(wn-1);
+        if (l >= 3 && a->(l-2) == 'e' && a->(l-1) == 't') {
+            word = DictionaryLookup(a, l-2);
+            if (WordInProperty(word, obj, name)) rtrue;
+        }
+    }
+    if (obj has pluralname) {
+        a = WordAddress(wn-1);
+        l = WordLength(wn-1);
+        if (l >= 4 && a->(l-3) == 'e' && a->(l-2) == 'n' && a->(l-1) == 'e') {
+            word = DictionaryLookup(a, l-2);
+            if (WordInProperty(word, obj, name)) rtrue;
+        }
+        if (l >= 4 && a->(l-4) == 'e' && a->(l-3) == 'r' && a->(l-2) == 'n' && a->(l-1) == 'e') {
+            word = DictionaryLookup(a, l-2);
+            if (WordInProperty(word, obj, name)) rtrue;
+        }
+    }
+    rfalse;
+];
+
+[ danishnoun;
+    parser_inflection_func = true;
+    parser_inflection = _danish_noun;
+    return ParseToken(ELEMENTARY_TT, NOUN_TOKEN);
+];
+
 ! Definitive noun
 [ DefinitiveNoun obj;
     if (obj has uter) { print (name) obj, "en"; return; }
