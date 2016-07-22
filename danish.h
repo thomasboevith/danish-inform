@@ -439,8 +439,28 @@ Constant COLON__TX      = ": ";
     return ParseToken(ELEMENTARY_TT, NOUN_TOKEN);
 ];
 
-! Definitive noun
-[ DefinitiveNoun obj;
+! Pronouns
+[ PronounAcc i;
+    if (i hasnt animate || i has uter) { print "den"; return; }
+    if (i hasnt animate || i has neuter) { print "det"; return; }
+    if (i has female) { print "hende"; return; }
+    if (i has male) { print "ham"; return; }
+];
+[ PronounNom i;
+    if (i hasnt animate || i has uter) { print "den"; return; }
+    if (i hasnt animate || i has neuter) { print "det"; return; }
+    if (i has female) { print "hun"; return; }
+    if (i has male) { print "ham"; return; }
+];
+[ CPronounNom i;
+    if (i hasnt animate || i has uter) { print "Den"; return; }
+    if (i hasnt animate || i has neuter) { print "Det"; return; }
+    if (i has female) { print "Hun"; return; }
+    if (i has male) { print "Ham"; return; }
+];
+
+! Nouns
+[ NounDef obj;
     if (obj has uter) { print (name) obj, "en"; return; }
     if (obj has neuter) { print (name) obj, "et"; return; }
     if (obj has pluralname) { print (name) obj, "ne"; return; }
@@ -452,18 +472,18 @@ Constant COLON__TX      = ": ";
 ! Accusative
 [ ThatOrThose obj;
     if (obj == player) {
-	if (player provides narrative_voice) {
-	    if (player.narrative_voice == 1) { print "jeg"; return; }
-	    if (player.narrative_voice == 3) { CDefart(player); return; }
-	}
-	print "du";
-	return;
+        if (player provides narrative_voice) {
+            if (player.narrative_voice == 1) { print "jeg"; return; }
+            if (player.narrative_voice == 3) { CDefart(player); return; }
+        }
+        print "du";
+        return;
     }
-    if (obj has pluralname)       { print "de"; return; }
-    if (obj has female)           { print "hun"; return; }
-    if (obj has male or animate)
-        if (obj hasnt neuter)     { print "han"; return; }
-    print "den";
+    if (obj has uter) { print "den"; return; }
+    if (obj has neuter) { print "det"; return; }
+    if (obj has pluralname) { print "dem"; return; }
+    if (obj has female) { print "hende"; return; }
+    if (obj has male or animate) { print "ham"; return; }
 ];
 
 ! Accusative
@@ -486,12 +506,12 @@ Constant COLON__TX      = ": ";
 ! Nominative
 [ CThatOrThose obj;
     if (obj == player) {
-	if (player provides narrative_voice) {
-	    if (player.narrative_voice == 1) { print "Jeg"; return; }
-	    if (player.narrative_voice == 3) { CDefart(player); return; }
-	}
-	print "Du";
-	return;
+        if (player provides narrative_voice) {
+            if (player.narrative_voice == 1) { print "Jeg"; return; }
+            if (player.narrative_voice == 3) { CDefart(player); return; }
+        }
+        print "Du";
+        return;
     }
     if (obj has pluralname)		{ print "De"; return; }
     if (obj has female)			{ print "Hun"; return; }
@@ -839,8 +859,8 @@ Constant COLON__TX      = ": ";
             ".";
         2:  CSubjectIs(x1,true); " allerede lukket.";
         3:  CSubjectVerb(actor,false,false,"lukke",0,"lukker","lukket");
-            " ", (the) x1, ".";
-        4:  "(efter at have lukket ", (the) x1, ")";
+            " ", (NounDef) x1, ".";
+        4:  "(efter at have lukket ", (NounDef) x1, ")";
     }
   CommandsOff: switch (n) {
         1: "[Command recording off.]";
@@ -868,7 +888,7 @@ Constant COLON__TX      = ": ";
   Consult:  CSubjectVerb(actor,true,false,"finder",0,"finder","fandt");
             print " ingenting af interesse i ";
             if (x1 == player) { OnesSelf(x1); ".";}
-            else print_ret (the) x1, ".";
+            else print_ret (NounDef) x1, ".";
   Cut: switch (n) {
         1:  print "At skære i ", (ThatOrThose) x1;
             Tense("virker", "virkede");
@@ -881,7 +901,7 @@ Constant COLON__TX      = ": ";
   Disrobe: switch (n) {
         1:  CSubjectIsnt(actor,true); " har ikke ", (ThatOrThose) x1, " på.";
         2:  CSubjectVerb(actor,false,false,"tager",0,"tager", "tog");
-            " ", (the) x1, " af.";
+            " ", (NounDef) x1, " af.";
     }
   Drink:    print "Der";
             Tense(" findes", " fandtes");
@@ -890,13 +910,13 @@ Constant COLON__TX      = ": ";
         1:  CSubjectIs(x1,true); " er her allerede.";
         2:  CSubjectVerb(actor, false, false, "har ikke", 0, "har ikke",
                          "havde ikke");
-            " ", (the) x1, ".";
-        3:  "(tager først ", (the) x1, " af)";
+            " ", (NounDef) x1, ".";
+        3:  "(tager først ", (NounDef) x1, " af)";
         4:  "Smidt.";
     }
   Eat: switch (n) {
         1:  CSubjectIs(x1,true); " uspiselig.";
-        2:  CSubjectVerb(actor,false,false,"spiser",0,"spiser", "spiste"); print " ", (the) x1;
+        2:  CSubjectVerb(actor,false,false,"spiser",0,"spiser", "spiste"); print " ", (NounDef) x1;
                 if (actor == player) ". Ikke værst."; else ".";
     }
   EmptyT: switch (n) {
@@ -909,7 +929,7 @@ Constant COLON__TX      = ": ";
     }
   Enter: switch (n) {
         1:  print "Men "; CSubjectIs(actor,true,true);
-            " allerede ", (nop) SupportObj(x1,"på ","i "), (the) x1, ".";
+            " allerede ", (nop) SupportObj(x1,"på ","i "), (NounDef) x1, ".";
         2:  CSubjectIs(x1,true);
             print " ikke noget som ", (theActor) actor;
             Tense(" kan ", " kunne ");
@@ -924,16 +944,16 @@ Constant COLON__TX      = ": ";
         4:  CSubjectCan(actor,true);
             " kun gå ind i noget fritstående.";
         5:  CSubjectVerb(actor,false,false,"går",0,"går","gik");
-            SupportObj(x1," op på"," ind i"); " ", (the) x1, ".";
-        6:  "(kommer ", (nop) SupportObj(x1,"af","ud af"), " ", (the) x1, ")";
-        7:  if (x1 has supporter) "(spinger op på ", (the) x1, ")";
-            if (x1 has container) "(går ind i ", (the) x1, ")";
-                                  "(går ind i ", (the) x1, ")";
+            SupportObj(x1," op på"," ind i"); " ", (NounDef) x1, ".";
+        6:  "(kommer ", (nop) SupportObj(x1,"af","ud af"), " ", (NounDef) x1, ")";
+        7:  if (x1 has supporter) "(spinger op på ", (NounDef) x1, ")";
+            if (x1 has container) "(går ind i ", (NounDef) x1, ")";
+                                  "(går ind i ", (NounDef) x1, ")";
     }
   Examine: switch (n) {
         1:  "Mørke, substantiv. Fuldstændigt eller næsten fuldstændigt fravær af dagslys eller lys fra lamper, lygter m.m.";
         2:  CSubjectVerb(actor,true,false,"ser",0,"ser","så");
-            " intet bemærkelsesværdigt ved ", (the) x1, ".";
+            " intet bemærkelsesværdigt ved ", (NounDef) x1, ".";
         3:  CSubjectIs(x1,true);
             Tense(" lige nu ");
             if (x1 has on) "tændt."; else "slukket.";
@@ -946,19 +966,19 @@ Constant COLON__TX      = ": ";
             " forlader den lukkede ", (name) x1, ".";
         3:  CSubjectVerb(actor,false,false,"går",0,"går", "gik");
             print " ";
-            SupportObj(x1,"ned af","ud af"); " ", (the) x1, ".";
+            SupportObj(x1,"ned af","ud af"); " ", (NounDef) x1, ".";
         4:  CSubjectIsnt(actor,true);
             print " ";
-            SupportObj(x1,"på","i"); " ", (the) x1, ".";
+            SupportObj(x1,"på","i"); " ", (NounDef) x1, ".";
         5:  "(går først ", (nop) SupportObj(x1,"ned af","ud af"),
-              " ", (the) x1, ")";
+              " ", (NounDef) x1, ")";
         6:  CSubjectVerb(actor,false,false,"står",0,"står","stod"); " op.";
     }
   Fill: switch (n) {
         1:  print "Der ";
             Tense("er", "var");
-            " intet oplagt at fylde ", (the) x1, " med.";
-        2:  print "At fylde ", (the) x1, " fra ", (the) x2;
+            " intet oplagt at fylde ", (NounDef) x1, " med.";
+        2:  print "At fylde ", (NounDef) x1, " fra ", (the) x2;
             Tense(" giver", " gav");
             " ingen mening.";
     }
@@ -970,31 +990,31 @@ Constant COLON__TX      = ": ";
         4:  print "total (ud af ", MAX_SCORE; ")";
     }
   GetOff:   print "Men ";
-            CSubjectIsnt(actor,true,true); " på ", (the) x1, " i øjeblikket.";
+            CSubjectIsnt(actor,true,true); " på ", (NounDef) x1, " i øjeblikket.";
   Give: switch (n) {
-        1:  CSubjectIsnt(actor,true); " bærer ikke ", (the) x1, ".";
+        1:  CSubjectIsnt(actor,true); " bærer ikke ", (NounDef) x1, ".";
         2:  CSubjectVerb(actor,false,false,"fumler",0,"fumler","fumlede");
-            print " ", (the) x1, " i et stykke tid, men ";
+            print " ", (NounDef) x1, " i et stykke tid, men ";
             CSubjectVoice(actor,"opnår","opnår","opnår","opnåede");
             " ikke meget derved.";
         3:  CSubjectDont(x1,true); " lader ikke til at være interesseret.";
         4:  CSubjectVerb(actor,false,false,"giver",0,"giver","gav");
-            " til ", (the) x1, ".";
+            " til ", (NounDef) x1, ".";
     }
   Go: switch (n) {
         1:  CSubjectWill(actor,true);
             Tense(" må", " måtte");
-                " klatre ", (nop) SupportObj(x1,"ned","ned af"), " ", (the) x1, " først.";
+                " klatre ", (nop) SupportObj(x1,"ned","ned af"), " ", (NounDef) x1, " først.";
         2:  CSubjectCant(actor,true); " gå den vej.";
-        3:  CSubjectIs  (actor,true); " kan ikke klatre op på ", (the) x1, ".";
-        4:  CSubjectIs  (actor,true); " kan ikke klatre ned af ", (the) x1, ".";
-        5:  CSubjectCant(actor,true); " fordi ", (the) x1, " ", (IsOrAre) x1, " er i vejen.";
-        6:  CSubjectCant(actor,true); " fordi ", (the) x1, " ikke ", (nop) PluralObj(x1,"fører","fører","førte"), " nogen steder hen.";
+        3:  CSubjectIs  (actor,true); " kan ikke klatre op på ", (NounDef) x1, ".";
+        4:  CSubjectIs  (actor,true); " kan ikke klatre ned af ", (NounDef) x1, ".";
+        5:  CSubjectCant(actor,true); " fordi ", (NounDef) x1, " ", (IsOrAre) x1, " er i vejen.";
+        6:  CSubjectCant(actor,true); " fordi ", (NounDef) x1, " ikke ", (nop) PluralObj(x1,"fører","fører","førte"), " nogen steder hen.";
         7:  CSubjectVerb(actor,false,false,"afgår",0,"afgår","afgik"); ".";
     }
   Insert: switch (n) {
         1:  CSubjectVerb(actor,true,false,"må",0,"må","måtte");
-            print " have ", (the) x1, " før ", (theActor) actor;
+            print " have ", (NounDef) x1, " før ", (theActor) actor;
             Tense(" kan", " kunne");
             " lægge ", (ItOrThem) x1, " ind i noget.";
         2:  CSubjectCant(x1,true); " indeholder ting.";
@@ -1006,9 +1026,9 @@ Constant COLON__TX      = ": ";
         6:  "(tager først ", (ItOrThem) x1, " af)";
         7:  print "Der ";
             Tense(" er", " var");
-            " ikke plads til mere i ", (the) x1, ".";
+            " ikke plads til mere i ", (NounDef) x1, ".";
         8:  "Udført.";
-        9:  CSubjectVerb(actor,false,false,"lægger",0,"lægger","lagde"); " ", (the) x1, " inden i ", (the) x2, ".";
+        9:  CSubjectVerb(actor,false,false,"lægger",0,"lægger","lagde"); " ", (NounDef) x1, " inden i ", (the) x2, ".";
     }
   Inv: switch (n) {
         1:  CSubjectVerb(actor,false,false,"har",0,"har","havde"); print " ingenting.";
@@ -1018,11 +1038,11 @@ Constant COLON__TX      = ": ";
     }
   Jump: CSubjectVerb(actor,false,false,"hopper",0,"hopper","hoppede"); " lidt op og ned.";
   JumpIn:
-        print "At hoppe i ", (the) x1, " ";
+        print "At hoppe i ", (NounDef) x1, " ";
         Tense("ville medføre", "ville have medført");
         " intet her.";
   JumpOn:
-        print "At hoppe op på ", (the) x1, " ";
+        print "At hoppe op på ", (NounDef) x1, " ";
         Tense("ville medføre", "ville have medført");
         " intet her.";
   JumpOver: switch (n) {
@@ -1073,22 +1093,22 @@ Constant COLON__TX      = ": ";
             Tense(" kan", " kunne");
             " låse.";
         2:  CSubjectIs  (x1,true); " låst i øjeblikket.";
-        3:  CSubjectWill(actor,true); " først lukke ", (the) x1, ".";
+        3:  CSubjectWill(actor,true); " først lukke ", (NounDef) x1, ".";
         4:  CSubjectDont(x1,true); " ser ud til at passe i låsen.";
-        5:  CSubjectVerb(actor,false,false,"låser",0,"låser","låste"); " ", (the) x1, ".";
+        5:  CSubjectVerb(actor,false,false,"låser",0,"låser","låste"); " ", (NounDef) x1, ".";
     }
   Look: switch (n) {
-        1:  print " (på ", (the) x1, ")";
-        2:  print " (i ", (the) x1, ")";
+        1:  print " (på ", (NounDef) x1, ")";
+        2:  print " (i ", (NounDef) x1, ")";
         3:  print " (som ", (object) x1, ")";
-        4:  print "^På ", (the) x1;
+        4:  print "^På ", (NounDef) x1;
             WriteListFrom(child(x1),
               ENGLISH_BIT+RECURSE_BIT+PARTINV_BIT+TERSE_BIT+CONCEAL_BIT+ISARE_BIT);
             ".";
         5,6:
             if (x1 ~= location) {
                 if (x1 has supporter) print "^På "; else print "^I ";
-                print (the) x1, " ", (theActor) actor, " ";
+                print (NounDef) x1, " ", (theActor) actor, " ";
                 Tense("kan", "kunne");
             }
             else { new_line; CSubjectCan(actor,false); }
@@ -1153,9 +1173,9 @@ Constant COLON__TX      = ": ";
         23: CSubjectVerb(actor, true, false, "ser ud til", "ser ud til", "ser ud til", "så ud til");
             print " at ville tale med nogen, men jeg ";
             Tense("kan", "kunne"); " ikke se hvem.";
-        24: CSubjectCant(actor, true); " tale med ", (the) x1, ".";
+        24: CSubjectCant(actor, true); " tale med ", (NounDef) x1, ".";
         25: "For at tale med nogen, prøv ~person, hej~ eller ligende.";
-        26: print "(tager først "; DefinitiveNoun(x1); print ")^";
+        26: print "(tager først "; NounDef(x1); print ")^";
         27: "Den ytring forstod jeg ikke.";
         28: print "Hvis jeg forstod dig ret, så tror jeg at du ville ";
         29: "Det tal forstod jeg ikke.";
@@ -1204,9 +1224,9 @@ Constant COLON__TX      = ": ";
         55: "[Comment NOT recorded.]";
         56: ".";
         57: "?";
-        58: "(tager først ", (the) x1, " ", (nop) SupportObj(x2,"af","ud af"), " ", (the) x2, ")";
+        58: "(tager først ", (NounDef) x1, " ", (nop) SupportObj(x2,"af","ud af"), " ", (the) x2, ")";
         59: "Du må være mere specifik.";
-        60: print (The) x1, " observerer at ";
+        60: print (NounDef) x1, " observerer at ";
     }
   No,Yes:   "Det var et retorisk spørgsmål.";
   NotifyOff:
@@ -1219,9 +1239,9 @@ Constant COLON__TX      = ": ";
         4:  print "   (holdt)";
         5:  print "   (givet væk)";
         6:  print "   (i ", (name) x1, ")";
-        7:  print "   (i ", (the) x1, ")";
-        8:  print "   (indeni ", (the) x1, ")";
-        9:  print "   (på ", (the) x1, ")";
+        7:  print "   (i ", (NounDef) x1, ")";
+        8:  print "   (indeni ", (NounDef) x1, ")";
+        9:  print "   (på ", (NounDef) x1, ")";
         10: print "   (mistet)";
     }
   Open: switch (n) {
@@ -1231,12 +1251,12 @@ Constant COLON__TX      = ": ";
             ".";
         2:  CSubjectVerb(x1,true,false,"virker",0,"virker","virkede"); " låst.";
         3:  CSubjectIs  (x1,true); " allerede åben.";
-        4:  CSubjectVerb(actor,false,false,"åbner",0,"åbner","åbnede"); print " ", (the) x1;
+        4:  CSubjectVerb(actor,false,false,"åbner",0,"åbner","åbnede"); print " ", (NounDef) x1;
             Tense(", og finder ", " og fandt ");
                 if (WriteListFrom(child(x1), ENGLISH_BIT+TERSE_BIT+CONCEAL_BIT) == 0) "ingenting.";
                 ".";
-        5:  CSubjectVerb(actor,false,false,"åbner",0,"åbner","åbnede"); " ", (the) x1, ".";
-        6:  "(åbner først ", (the) x1, ")";
+        5:  CSubjectVerb(actor,false,false,"åbner",0,"åbner","åbnede"); " ", (NounDef) x1, ".";
+        6:  "(åbner først ", (NounDef) x1, ")";
     }
   Order:    CSubjectHas(x1,false); " vigtigere ting at gøre.";
   Places: switch (n) {
@@ -1287,20 +1307,20 @@ Constant COLON__TX      = ": ";
     }
   PutOn: switch (n) {
         1:  CSubjectVerb(actor,true,false,"må",0,"må","måtte");
-            print " holde ", (the) x1, " før ", (theActor) actor;
+            print " holde ", (NounDef) x1, " før ", (theActor) actor;
             Tense(" kan", " kunne");
             " lægge ", (ItOrThem) x1, " på noget.";
         2:  CSubjectCant(actor,true,true); " lægge noget på sig selv.";
-        3:  print "At lægge ting på ", (the) x1, " ville";
+        3:  print "At lægge ting på ", (NounDef) x1, " ville";
             Tense(" ikke medføre", " ikke have medført");
             " noget.";
         4:  CSubjectVerb(actor,true,false,"mangler",0,"mangler","manglede"); " smidighed.";
         5:  "(tager først ", (ItOrThem) x1, " af)";
         6:  print "Der ";
             Tense("er", "var");
-            " ikke mere plads på ", (the) x1, ".";
+            " ikke mere plads på ", (NounDef) x1, ".";
         7:  "Udført.";
-        8:  CSubjectVerb(actor,false,false,"lægger",0,"lægger","lagde"); " ", (the) x1, " på ", (the) x2, ".";
+        8:  CSubjectVerb(actor,false,false,"lægger",0,"lægger","lagde"); " ", (NounDef) x1, " på ", (the) x2, ".";
     }
   Quit: switch (n) {
         1:  print "Svar ja eller nej.";
@@ -1351,15 +1371,15 @@ Constant COLON__TX      = ": ";
             " mørkt.";
         2:  print "Der ";
             Tense("er", "var");
-            " ingenting på ", (the) x1, ".";
-        3:  print "På ", (the) x1;
+            " ingenting på ", (NounDef) x1, ".";
+        3:  print "På ", (NounDef) x1;
                 WriteListFrom(child(x1), ENGLISH_BIT+TERSE_BIT+CONCEAL_BIT+ISARE_BIT);
                 ".";
         4:  CSubjectVerb(actor,true,false,"finder",0,"finder","fandt"); " ingenting af interesse.";
-        5:  CSubjectCant(actor,true); " se indeni, eftersom ", (the) x1, " ", (IsOrAre) x1, " lukket.";
-        6:  "", (The) x1, " ", (IsOrAre) x1, " tom.";
+        5:  CSubjectCant(actor,true); " se indeni, eftersom ", (NounDef) x1, " ", (IsOrAre) x1, " lukket.";
+        6:  "", (NounDef) x1, " ", (IsOrAre) x1, " tom.";
 
-        7:  print "I ", (the) x1;
+        7:  print "I ", (NounDef) x1;
                 WriteListFrom(child(x1), ENGLISH_BIT+TERSE_BIT+CONCEAL_BIT+ISARE_BIT);
                 ".";
     }
@@ -1367,7 +1387,7 @@ Constant COLON__TX      = ": ";
   Set:      CSubjectCant(actor,true); " sæt ", (ThatOrThose) x1, ".";
   SetTo:    CSubjectCant(actor,true); " sætte ", (ThatOrThose) x1, " til noget.";
   Show: switch (n) {
-        1:  CSubjectIsnt(actor,true); " holder ", (the) x1, ".";
+        1:  CSubjectIsnt(actor,true); " holder ", (NounDef) x1, ".";
         2:  CSubjectIs  (x1,true); " ikke imponerende.";
     }
   Sing:     print (PossessiveCaps) actor, " ";
@@ -1402,7 +1422,7 @@ Constant COLON__TX      = ": ";
             Tense("kan", "kunne");
             " skrue af eller på.";
         2:  CSubjectIs  (x1,true); " allerede slukket.";
-        3:  CSubjectVerb(actor,false,false,"slukker",0,"slukker","slukkede"); " ", (the) x1, ".";
+        3:  CSubjectVerb(actor,false,false,"slukker",0,"slukker","slukkede"); " ", (NounDef) x1, ".";
     }
   SwitchOn: switch (n) {
         1:  CSubjectIs  (x1,true);
@@ -1410,27 +1430,27 @@ Constant COLON__TX      = ": ";
             Tense("kan", "kunne");
             " skrue af eller på.";
         2:  CSubjectIs  (x1,true); " allerede tændt.";
-        3:  CSubjectVerb(actor,false,false,"tænder",0,"tænder","tændte"); " ", (the) x1, " .";
+        3:  CSubjectVerb(actor,false,false,"tænder",0,"tænder","tændte"); " ", (NounDef) x1, " .";
     }
 
   Take: switch (n) {
         1:  "Taget.";
         2:  CSubjectIs  (actor,false); " har altid været lidt selvoptaget.";
-        3:  print "Jeg tror ikke ", (the) x1, " ville ";
+        3:  print "Jeg tror ikke ", (NounDef) x1, " ville ";
             Tense("synes", "have synes");
             " om det.";
         4:  CSubjectWill(actor,true);
             Tense(" må ", " måtte ");
-            " tage ", (nop) SupportObj(x1,"af","ud af"), " ", (the) x1, " først.";
+            " tage ", (nop) SupportObj(x1,"af","ud af"), " ", (NounDef) x1, " først.";
         5:  CSubjectVerb(actor,true,false,"har allerede",0,"har allerede","havde allerede"); " ", (ThatOrThose) x1, ".";
-        6:  CSubjectVerb(x2,true,false,"ser ud",0,"ser ud","så ud"); " til at tilhøre ", (the) x1, ".";
-        7:  CSubjectVerb(x2,true,false,"ser ud",0,"ser ud","så ud"); " til at være en del af ", (the) x1, ".";
+        6:  CSubjectVerb(x2,true,false,"ser ud",0,"ser ud","så ud"); " til at tilhøre ", (NounDef) x1, ".";
+        7:  CSubjectVerb(x2,true,false,"ser ud",0,"ser ud","så ud"); " til at være en del af ", (NounDef) x1, ".";
         8:  CSubjectIs  (x1,true); " ikke tilgængelig.";
         9:  CSubjectIs  (x1,true); " ikke åben.";
         10: CSubjectIs  (x1,true); " knapt bærbar.";
         11: CSubjectIs  (x1,true); " sidder fast.";
         12: CSubjectIs  (actor,true); " bærer på for mange ting allerede.";
-        13: "(lægger ", (the) x1, " ind i ", (the) x2, " for at gøre plads)";
+        13: "(lægger ", (NounDef) x1, " ind i ", (the) x2, " for at gøre plads)";
     }
   Taste: switch (n) {
         1:  CSubjectVerb(actor,true,false,"smager",0,"smager","smagte"); " intet uventet.";
@@ -1472,8 +1492,8 @@ Constant COLON__TX      = ": ";
             ".";
         2:  CSubjectIs  (x1,true); " ulåst i øjeblikket.";
         3:  CSubjectDont(x1,true); " ser ud til at passe i låsen.";
-        4:  CSubjectVerb(actor,false,false,"låser",0,"låser","låste"); " ", (the) x1, " op.";
-        5:  "(låser føst ", (the) x1, " op)";
+        4:  CSubjectVerb(actor,false,false,"låser",0,"låser","låste"); " ", (NounDef) x1, " op.";
+        5:  "(låser føst ", (NounDef) x1, " op)";
     }
   VagueGo:  CSubjectWill(actor);
             print " må ";
@@ -1496,7 +1516,7 @@ Constant COLON__TX      = ": ";
         1:  print "Men ";
             CSubjectIsnt(actor,true,true); " bærer ikke ", (ThatOrThose) x1, ".";
         2:  CSubjectVerb(actor,false,false,"ser",0,"ser","så");
-            print " fjollet ud, som du vifter med ", (the) x1;
+            print " fjollet ud, som du vifter med ", (NounDef) x1;
             if (x2)
                 " mod ", (the) x2, ".";
             ".";
@@ -1506,14 +1526,14 @@ Constant COLON__TX      = ": ";
         CSubjectVerb(actor,false,false,"vinke",0,"vinke","vinkede");
         switch (n) {
         1: ! nothing
-        2: print " til ", (the) x1;
+        2: print " til ", (NounDef) x1;
         }
         ", og føler dig lidt fjollet.";
   Wear: switch (n) {
         1:  CSubjectCant(actor,true); " bærer ", (ThatOrThose) x1, "!";
         2:  CSubjectIs  (actor,true); " holder ikke ", (ThatOrThose) x1, "!";
         3:  CSubjectIs  (actor,true); " bærer allerede ", (ThatOrThose) x1, "!";
-        4:  CSubjectVerb(actor,false,false,"tager",0,"tager","tog"); " ", (the) x1, " på.";
+        4:  CSubjectVerb(actor,false,false,"tager",0,"tager","tog"); " ", (NounDef) x1, " på.";
     }
 ! Yes:  see No.
 ];
