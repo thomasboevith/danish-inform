@@ -401,6 +401,7 @@ Constant COLON__TX      = ": ";
 [ _danish_noun obj word a l;
     ! Is word in object property?
     if (WordInProperty(word, obj, name)) rtrue;
+    ! Does word provide definite name?
     ! If not check if it was maybe written in definitive form
     if (obj has uter) {
         a = WordAddress(wn-1);
@@ -461,6 +462,7 @@ Constant COLON__TX      = ": ";
 
 ! Nouns
 [ NounDef obj;
+    if (obj provides definitename) { print (string) obj.definitename; return; }
     if (obj has uter) { print (name) obj, "en"; return; }
     if (obj has neuter) { print (name) obj, "et"; return; }
     if (obj has pluralname) { print (name) obj, "ne"; return; }
@@ -668,14 +670,14 @@ Constant COLON__TX      = ": ";
 [ CSubjectWill obj reportage nocaps;
     if (obj == player) {
         if (player provides narrative_voice) switch (player.narrative_voice) {
-          1:  Tense("I'll", "I would've"); return;
+          1:  Tense("Jeg vil", "Jeg ville have"); return;
           2:  ! Do nothing.
           3:  CDefart(player);
-              Tense(" will", " would've"); return;
+              Tense(" vil", " ville have"); return;
           default: RunTimeError(16, player.narrative_voice);
         }
-        if (nocaps) Tense("you'll", "you'd");
-        else Tense("You'll", "You'd");
+        if (nocaps) Tense("du må", "du måtte");
+        else Tense("Du må", "Du måtte");
         return;
     }
     SubjectNotPlayer(obj, reportage, "will", "will", "would");
@@ -858,7 +860,7 @@ Constant COLON__TX      = ": ";
             Tense(" kan lukke", " kunne have lukket");
             ".";
         2:  CSubjectIs(x1,true); " allerede lukket.";
-        3:  CSubjectVerb(actor,false,false,"lukke",0,"lukker","lukket");
+        3:  CSubjectVerb(actor,false,false,"lukker",0,"lukker","lukket");
             " ", (NounDef) x1, ".";
         4:  "(efter at have lukket ", (NounDef) x1, ")";
     }
@@ -978,7 +980,7 @@ Constant COLON__TX      = ": ";
         1:  print "Der ";
             Tense("er", "var");
             " intet oplagt at fylde ", (NounDef) x1, " med.";
-        2:  print "At fylde ", (NounDef) x1, " fra ", (the) x2;
+        2:  print "At fylde ", (NounDef) x1, " fra ", (NounDef) x2;
             Tense(" giver", " gav");
             " ingen mening.";
     }
@@ -1023,12 +1025,12 @@ Constant COLON__TX      = ": ";
             Tense(" må", " måtte");
             " tage ", (ItOrThem) x1, " af først.";
         5:  CSubjectCant(actor,true); " lægge noget ind i sig selv.";
-        6:  "(tager først ", (ItOrThem) x1, " af)";
+        6:  "(tager ", (ItOrThem) x1, " først af)";
         7:  print "Der ";
             Tense(" er", " var");
             " ikke plads til mere i ", (NounDef) x1, ".";
         8:  "Udført.";
-        9:  CSubjectVerb(actor,false,false,"lægger",0,"lægger","lagde"); " ", (NounDef) x1, " inden i ", (the) x2, ".";
+        9:  CSubjectVerb(actor,false,false,"lægger",0,"lægger","lagde"); " ", (NounDef) x1, " inden i ", (NounDef) x2, ".";
     }
   Inv: switch (n) {
         1:  CSubjectVerb(actor,false,false,"har",0,"har","havde"); print " ingenting.";
@@ -1194,7 +1196,7 @@ Constant COLON__TX      = ": ";
         38: "Det verbum kender jeg ikke.";
             #Endif;
         39: "Det er ikke noget, du har brug for i dette spil.";
-        40: CSubjectCant(actor,true); " se ~", (address) x1, "~ (", (the) x2, ") i øjeblikket.";
+        40: CSubjectCant(actor,true); " se ~", (address) x1, "~ (", (NounDef) x2, ") i øjeblikket.";
         41: "Jeg forstod ikke rigtig den afslutning.";
         42: if (x1 == 0) print "Ingen"; else print "Kun ", (number) x1;
             print " af dem ";
@@ -1224,7 +1226,7 @@ Constant COLON__TX      = ": ";
         55: "[Comment NOT recorded.]";
         56: ".";
         57: "?";
-        58: "(tager først ", (NounDef) x1, " ", (nop) SupportObj(x2,"af","ud af"), " ", (the) x2, ")";
+        58: "(tager først ", (NounDef) x1, " ", (nop) SupportObj(x2,"af","ud af"), " ", (NounDef) x2, ")";
         59: "Du må være mere specifik.";
         60: print (NounDef) x1, " observerer at ";
     }
@@ -1320,7 +1322,7 @@ Constant COLON__TX      = ": ";
             Tense("er", "var");
             " ikke mere plads på ", (NounDef) x1, ".";
         7:  "Udført.";
-        8:  CSubjectVerb(actor,false,false,"lægger",0,"lægger","lagde"); " ", (NounDef) x1, " på ", (the) x2, ".";
+        8:  CSubjectVerb(actor,false,false,"lægger",0,"lægger","lagde"); " ", (NounDef) x1, " på ", (NounDef) x2, ".";
     }
   Quit: switch (n) {
         1:  print "Svar ja eller nej.";
@@ -1450,7 +1452,7 @@ Constant COLON__TX      = ": ";
         10: CSubjectIs  (x1,true); " knapt bærbar.";
         11: CSubjectIs  (x1,true); " sidder fast.";
         12: CSubjectIs  (actor,true); " bærer på for mange ting allerede.";
-        13: "(lægger ", (NounDef) x1, " ind i ", (the) x2, " for at gøre plads)";
+        13: "(lægger ", (NounDef) x1, " ind i ", (NounDef) x2, " for at gøre plads)";
     }
   Taste: switch (n) {
         1:  CSubjectVerb(actor,true,false,"smager",0,"smager","smagte"); " intet uventet.";
@@ -1518,7 +1520,7 @@ Constant COLON__TX      = ": ";
         2:  CSubjectVerb(actor,false,false,"ser",0,"ser","så");
             print " fjollet ud, som du vifter med ", (NounDef) x1;
             if (x2)
-                " mod ", (the) x2, ".";
+                " mod ", (NounDef) x2, ".";
             ".";
         3:  DecideAgainst();
     }
@@ -1530,9 +1532,9 @@ Constant COLON__TX      = ": ";
         }
         ", og føler dig lidt fjollet.";
   Wear: switch (n) {
-        1:  CSubjectCant(actor,true); " bærer ", (ThatOrThose) x1, "!";
-        2:  CSubjectIs  (actor,true); " holder ikke ", (ThatOrThose) x1, "!";
-        3:  CSubjectIs  (actor,true); " bærer allerede ", (ThatOrThose) x1, "!";
+        1:  CSubjectCant(actor,true); " tage ", (ThatOrThose) x1, " på.";
+        2:  CSubjectIs  (actor,true); " holder ikke ", (ThatOrThose) x1, ".";
+        3:  CSubjectIs  (actor,true); " bærer allerede ", (ThatOrThose) x1, ".";
         4:  CSubjectVerb(actor,false,false,"tager",0,"tager","tog"); " ", (NounDef) x1, " på.";
     }
 ! Yes:  see No.
