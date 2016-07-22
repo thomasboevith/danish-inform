@@ -382,7 +382,7 @@ Verb 'push' 'clear' 'move' 'press' 'shift'
 
 Verb 'put'
     * multiexcept 'in'/'inside'/'into' noun     -> Insert
-    * multiexcept 'on'/'onto' noun              -> PutOn
+    * multiexcept 'on'/'onto' danishnoun              -> PutOn
     * 'on' held                                 -> Wear
     * 'down' multiheld                          -> Drop
     * multiheld 'down'                          -> Drop;
@@ -392,7 +392,7 @@ Verb 'read'
     * 'about' topic 'in' noun                   -> Consult
     * topic 'in' noun                           -> Consult;
 
-Verb 'fisk' * danishnoun -> Take
+Verb 'fisk' * danishnoun -> Examine
             * danishnoun 'to' creature          -> Give;
 
 Verb 'remove'
