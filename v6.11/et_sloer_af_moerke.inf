@@ -1,0 +1,136 @@
+!% +language_name=Danish
+! Titel: Et slør af mørke
+! Undertitel: En simpel demonstration af interaktiv fiktion på dansk
+! Forfatter: Thomas Bøvith
+! Sprog: Dansk
+! Licens: Creative Commons Kreditering-DelPåSammeVilkår 4.0 International licens (CC BY-SA 4.0), creativecommons.org/licenses/by-sa/4.0/
+! Note: Oversat fra engelsk af Thomas Bøvith efter "Cloak of Darkness" for Inform af Roger Firth (1999-09-17)
+! Walkthrough: N. I. U SLØR. SMID SLØRET. V. TAG SLØRET AF. HÆNG SLØRET PÅ KNAGEN. Ø. S. LÆS BESKEDEN.
+! Walkthrough, alternativ: S. S. N. V. HÆNG SLØRET PÅ KNAGEN. Ø. S. LÆS BESKED.
+
+Release 1; ! Release number 1, 2, ...
+Serial "170511"; ! Date of last modification of the source code
+
+Include "DanAlpha";
+Constant Story "Et slør af mørke";
+Constant Headline "^En simpel demonstration af interaktiv fiktion på dansk af Thomas Bøvith^";
+Constant MANUAL_PRONOUNS;
+Constant MAX_SCORE  2;
+Include "Parser";
+Include "VerbLib";
+Include "DanRout";
+
+! ============================================================================ !
+
+Object  foyer "Foyeren i Operahuset"
+ with   description
+            "Du står i en rummelig foyer, som er pragtfuldt udsmykket i røde og
+            gyldne farver med funklende kandelabre i loftet. Indgangen fra
+            gaden ligger mod nord, og der er døråbninger mod syd og vest.",
+        s_to  bar,
+        w_to  garderobe,
+        n_to
+            "Du er kun lige ankommet, og desuden virker det som om vejret
+            udenfor bliver værre og værre.",
+ has    light;
+
+Object  garderobe "Garderobe"
+ with   description
+            "Væggene i dette lille rum var øjensynligt engang udstyret med
+            rækker af knager, men nu er der blot en enkelt tilbage. Udgangen
+            er en dør mod øst.",
+        e_to  foyer,
+ has    light;
+
+Object  knage "lille messingknage" garderobe
+ with   name 'lille' 'messing' 'knage' 'knagen',
+        description [;
+            print "Det er en lille knage af messing ";
+            if (self == parent(sloer)) "med et slør hængende på den.";
+            "skruet ind i væggen.";
+        ],
+ has    scenery supporter def_article;
+
+Object  bar "Foyerens bar"
+ with   description
+            "Baren, der er mere bart indrettet end den overdådige foyer mod
+            nord, er helt tom. Det ser ud som om en eller anden besked er
+            skriblet i savsmuldet på gulvet.",
+        n_to  foyer,
+        before [;
+         Go:
+            if (self hasnt light && noun ~= n_obj) {
+                message.number = message.number + 2;
+                "At famle rundt i mørket er ikke en god ide!";
+            }
+         default:
+            if (self hasnt light) {
+                message.number = message.number + 1;
+                "I mørke? Du kunne nemt komme til at forstyrre noget!";
+            }
+        ],
+ has    ~light;
+
+Object  sloer "slør"
+ with   short_name_def "sorte slør",
+ with   name 'flot' 'mørkt' 'sort' 'silke' 'slør' 'sløret' 'kappe',
+        description
+            "Et smukt slør af silke med kanter af satin og med spredte stænk af
+            regndråber. Sløret er så sort i farven, at det næsten ser ud som
+            om, det suger lyset fra rummet.",
+        before [;
+         Drop, PutOn:
+            if (location == garderobe) {
+                give bar light;
+                if (action == ##PutOn && self has general) {
+                    give self ~general;
+                    score++;
+                }
+            }
+            else
+                "Dette er ikke et passende sted at lade et smukt slør ligge
+                og flyde.";
+        ],
+        after [;
+         Take: give bar ~light;
+        ],
+ has    clothing general neuter def_article;
+
+Object  message "skriblet besked" bar
+ with   name 'besked' 'beskeden' 'savsmuld' 'gulv',
+        description [;
+            if (self.number < 2) {
+                score++;
+                deadflag = 2;
+                print "Beskeden, som er omhyggeligt skriblet i savsmuldet, lyder...";
+            }
+            else {
+                deadflag = 3;
+                print "Beskeden er uforsigtigt blevet betrådt, hvilket har
+                    gjort den svært at tyde. Du kan lige akkurat tyde
+                    ordene...";
+            }
+        ],
+        number  0,
+ has    scenery;
+
+[ Initialise;
+    location = foyer;
+    move sloer to player;
+    give sloer worn;
+    "^^Du skynder dig igennem den regnfulde novemberaften og bliver glad, da du
+    ser det strålende lys fra operahuset. Det er pudsigt, at der ikke er flere
+    mennesker på gaden, men hvad havde du egentligt forventet af et billigt
+    demo-spil...?^";
+];
+
+[ DeathMessage; print "Du har tabt"; ];
+
+! ============================================================================ !
+
+Include "DanishG";
+
+Verb 'hæng'     * held 'på' noun      -> PutOn
+    * 'op' held 'på' noun               -> PutOn;
+
+! ============================================================================ !
