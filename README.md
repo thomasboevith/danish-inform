@@ -3,7 +3,17 @@
 Danish language definition files for the Inform programming language for
 interactive fiction
 
-Status: Under development.
+## v6.11
 
-    2016-06-22 Making new language definition files to work with inform6lib, version 6.12.1
+Tested with Inform compiler version 6.31 and Inform library 6/11.
+
+Status: Beta
+
+Version: 0.1
+
+## v6.12
+
+Status: Under development
+
+Version: 0.1
 
