@@ -197,8 +197,6 @@ Verb meta 'glklist'
 
 [ ADirection; if (noun in compass) rtrue; rfalse; ];
 
-! TO ADD: 'før' 'løft' 'heis' 'reis' 'støtt'
-
 Verb 'angrib' 'bræk' 'knæk' 'ødelæg' 'bekæmp' 'dræb'
      'myrd' 'kvæst' 'kværk' 'smadre' 'smadr' 'kvas' 'torturer'
                 * noun                                      -> Attack
@@ -497,9 +495,6 @@ Verb 'stil' 'indstil'
                 * noun 'ind'                                -> Set
                 * noun 'på'/'til' special                   -> SetTo
                 * noun 'ind' 'på'/'til' special             -> SetTo;
-Verb 'steng'
-                * noun                                      -> Close
-                * noun 'igen'                               -> Close;
 Verb 'stop'
                 * noun                                      -> SwitchOff;
 Verb 'svar'
@@ -565,7 +560,7 @@ Verb 'se' 'kig' 'k//' 'l//'
                 * 'i//'/'indeni'/'gennem'/'igennem' noun    -> Search
                 * 'ind'/'inde' 'i//' noun                   -> Search
                 * 'under' noun                              -> LookUnder;
-Verb 'tryk' 'skub' 'pres' 'dyt'
+Verb 'tryk' 'skub' 'pres'
                 * noun                                      -> Push
                 * 'på'/'til' noun                           -> Push
                 * noun noun                                 -> PushDir
