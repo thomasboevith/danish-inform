@@ -1,6 +1,6 @@
 !% +language_name=Danish
 ! Titel: Et slør af mørke
-! Undertitel: En simpel demonstration af interaktiv fiktion på dansk
+! Undertitel: En interaktiv demo-fiktion af Inform 6 på dansk af Thomas Bøvith
 ! Forfatter: Thomas Bøvith
 ! Sprog: Dansk
 ! Licens: Creative Commons Kreditering-DelPåSammeVilkår 4.0 International licens (CC BY-SA 4.0), creativecommons.org/licenses/by-sa/4.0/
@@ -9,11 +9,11 @@
 ! Walkthrough, alternativ: S. S. N. V. HÆNG SLØRET PÅ KNAGEN. Ø. S. LÆS BESKED.
 
 Release 1; ! Release number 1, 2, ...
-Serial "170511"; ! Date of last modification of the source code
+Serial "170512"; ! Date of last modification of the source code
 
 Include "DanAlpha";
 Constant Story "Et slør af mørke";
-Constant Headline "^En simpel demonstration af interaktiv fiktion på dansk af Thomas Bøvith^";
+Constant Headline "^En interaktiv demo-fiktion af Inform 6 på dansk af Thomas Bøvith^";
 Constant MANUAL_PRONOUNS;
 Constant MAX_SCORE  2;
 Include "Parser";
