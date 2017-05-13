@@ -3,7 +3,7 @@
 Danish language definition files for the Inform programming language for
 interactive fiction.
 
-Translation (c) Thomas Bøvith 2016-2017.
+Danish translation (c) Thomas Bøvith 2016-2017.
 
 Based on the Swedish translation (c) Fredrik Ramsberg 2003-2008 and Norwegian
 translation by Eirik Krogstad 2011 (with permissions).
