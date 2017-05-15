@@ -1178,7 +1178,7 @@ Constant COMMA__TX    = ", ";
                2: "Ingenting at gøre!";
                3: print " Du er død ";
                4: print " Du har vundet ";
-               5: print "^Du kan vælge: GENSTART eller HENT et gemt spil";
+               5: print "^Du kan vælge: GENSTART, HENT et gemt spil";
                   #IFDEF DEATH_MENTION_UNDO;
                   print ", FORTRYD dit sidste træk";
                   #ENDIF;
