@@ -454,6 +454,9 @@ Verb 'sluk'
 Verb 'smag' 'sut' 'slik' 'sug'
                 * noun                                      -> Taste
                 * 'på' noun                                 -> Taste;
+Verb 'spark'
+                * noun                                      -> Attack
+                * noun 'i//' 'stykker'                      -> Attack;
 Verb 'kæl' 'kærtegn' 'føl' 'hold'
                 * noun                                      -> Touch
                 * 'på'/'med' noun                           -> Touch;
