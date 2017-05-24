@@ -1007,7 +1007,7 @@ Constant COMMA__TX    = ", ";
            {   1: print_ret (CDenEllerHan) x1, " er her allerede.";
                2: "Du har ikke ", (DenEllerHam) x1, ".";
                3: "(tager først ", (the) x1, " af)";
-               4: print "Du smider "; LanguagePrintShortName(noun); ".";
+               4:  "Du smider ", (the) x1, ".";
            }
   Eat:     switch(n)
            {   1: print (CDenEllerHan) x1," er uspiselig";
