@@ -13,7 +13,7 @@ Version: 0.1
 
 ## v6.12
 
-Status: Under development
+Status: Under development (does not work)
 
 Version: 0.1
 
