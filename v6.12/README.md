@@ -3,6 +3,6 @@
 Danish language definition files for the Inform programming language for
 interactive fiction.
 
-Status: Under development
+Status: Under development (does not work)
 
 Version: 0.1
